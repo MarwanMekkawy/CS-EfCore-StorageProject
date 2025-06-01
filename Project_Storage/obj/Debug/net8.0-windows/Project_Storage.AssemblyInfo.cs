@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Project_Storage")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c1e1abda0f25eb4340d90315f35daa9a0405c0e9")]
 [assembly: System.Reflection.AssemblyProductAttribute("Project_Storage")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Project_Storage")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

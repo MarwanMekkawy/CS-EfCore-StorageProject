@@ -43,12 +43,13 @@ namespace Project_Storage
             //transfer type
             comboBox2.Items.Add("in");
             comboBox2.Items.Add("out");
+            comboBox2.Items.Add("internal");
             comboBox2.SelectedItem = "out";
 
             //internal move?
             comboBox3.Items.Add(true);
             comboBox3.Items.Add(false);
-            comboBox3.SelectedItem = true;
+            comboBox3.SelectedItem = false;
 
             //importer client
             List<string> list = db.Clients.Where(x => x.Type == "Importer").Select(x => x.Name).ToList();
@@ -159,7 +160,7 @@ namespace Project_Storage
                 transfer.ImporterClientName = null;
                 transfer.ImporterStorageName = null;
             }
-            db.Transfers.Add(transfer); 
+            db.Transfers.Add(transfer);
             db.SaveChanges();
         }
         ////closing importer storage/exporter client options
@@ -190,7 +191,7 @@ namespace Project_Storage
                 comboBox5.Enabled = true;
             }
         }
-        //assuring that importing storage not the exporting storage at same time
+        //assuring that importing storage not the exporting storage at same time (endless loop problem to solve) #######
         private void comboBox5_SelectedValueChanged(object sender, EventArgs e)
         {
             //List<string> list4 = db.Storages.Select(x => x.Name).ToList();
@@ -214,6 +215,24 @@ namespace Project_Storage
             //}
             //comboBox5.DataSource = list2;
         }
+        //making sure internal/external transfers triggers the right comboboxes
+        private void comboBox3_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if ((bool)comboBox3.SelectedItem == true)
+            {
+                comboBox4.Enabled = false;
+                comboBox6.Enabled = false;
+                comboBox2.Enabled = false;
+                comboBox2.SelectedItem = "internal";
+                comboBox1.SelectedItem = true;
+            }
+            else if ((bool)comboBox3.SelectedItem == false)
+            {
+                comboBox4.Enabled = true;
+                comboBox6.Enabled = true;
+                comboBox2.Enabled = true;
+            }
+        }
         //////disposing the connection
         protected override void OnFormClosed(FormClosedEventArgs e)
         {
@@ -221,5 +240,6 @@ namespace Project_Storage
             base.OnFormClosed(e);
         }
 
+       
     }
 }

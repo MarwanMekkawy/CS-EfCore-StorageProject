@@ -63,3 +63,4 @@ F:\IT\projects\Project_Storage\Project_Storage\obj\Debug\net8.0-windows\Project_
 F:\IT\projects\Project_Storage\Project_Storage\obj\Debug\net8.0-windows\Project_Storage.F_Delete.resources
 F:\IT\projects\Project_Storage\Project_Storage\obj\Debug\net8.0-windows\Project_Storage.F_Result.resources
 F:\IT\projects\Project_Storage\Project_Storage\obj\Debug\net8.0-windows\Project_.F22E8547.Up2Date
+F:\IT\projects\Project_Storage\Project_Storage\obj\Debug\net8.0-windows\Project_Storage.sourcelink.json

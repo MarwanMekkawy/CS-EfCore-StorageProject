@@ -306,7 +306,7 @@
             // comboBox2
             // 
             comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(390, 151);
+            comboBox2.Location = new Point(389, 177);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(132, 23);
             comboBox2.TabIndex = 70;
@@ -323,7 +323,7 @@
             // label14
             // 
             label14.AutoSize = true;
-            label14.Location = new Point(284, 270);
+            label14.Location = new Point(283, 243);
             label14.Name = "label14";
             label14.Size = new Size(82, 15);
             label14.TabIndex = 67;
@@ -341,7 +341,7 @@
             // label16
             // 
             label16.AutoSize = true;
-            label16.Location = new Point(285, 241);
+            label16.Location = new Point(284, 272);
             label16.Name = "label16";
             label16.Size = new Size(93, 15);
             label16.TabIndex = 63;
@@ -360,7 +360,7 @@
             // label17
             // 
             label17.AutoSize = true;
-            label17.Location = new Point(284, 183);
+            label17.Location = new Point(284, 151);
             label17.Name = "label17";
             label17.Size = new Size(80, 15);
             label17.TabIndex = 60;
@@ -378,7 +378,7 @@
             // label19
             // 
             label19.AutoSize = true;
-            label19.Location = new Point(285, 154);
+            label19.Location = new Point(284, 180);
             label19.Name = "label19";
             label19.Size = new Size(75, 15);
             label19.TabIndex = 56;
@@ -387,10 +387,11 @@
             // comboBox3
             // 
             comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(390, 180);
+            comboBox3.Location = new Point(390, 148);
             comboBox3.Name = "comboBox3";
             comboBox3.Size = new Size(132, 23);
             comboBox3.TabIndex = 71;
+            comboBox3.SelectedValueChanged += comboBox3_SelectedValueChanged;
             // 
             // comboBox4
             // 
@@ -404,7 +405,7 @@
             // comboBox5
             // 
             comboBox5.FormattingEnabled = true;
-            comboBox5.Location = new Point(390, 236);
+            comboBox5.Location = new Point(389, 267);
             comboBox5.Name = "comboBox5";
             comboBox5.Size = new Size(132, 23);
             comboBox5.TabIndex = 73;
@@ -413,7 +414,7 @@
             // comboBox6
             // 
             comboBox6.FormattingEnabled = true;
-            comboBox6.Location = new Point(390, 265);
+            comboBox6.Location = new Point(389, 238);
             comboBox6.Name = "comboBox6";
             comboBox6.Size = new Size(132, 23);
             comboBox6.TabIndex = 74;
