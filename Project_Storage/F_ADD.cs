@@ -100,7 +100,7 @@ namespace Project_Storage
 
             //item name
             NewItem();
-            comboBox13.SelectedIndex = 0;
+            if (comboBox13.Items.Count > 0) comboBox13.SelectedIndex = 0;
 
 
         }
@@ -167,50 +167,76 @@ namespace Project_Storage
             Transfers transfer = new Transfers();
             transfer.Type = comboBox2.SelectedItem.ToString();
             transfer.Move = (bool)comboBox3.SelectedItem;
-            transfer.ImporterClientName = comboBox4.SelectedItem.ToString();
-            transfer.ImporterStorageName = comboBox5.SelectedItem.ToString();
-            transfer.ExporterClientName = comboBox6.SelectedItem.ToString();
-            transfer.ExporterStorageName = comboBox7.SelectedItem.ToString();
+
+            //client picking cases
+            if ((comboBox4.SelectedItem as string) == "none" && (comboBox6.SelectedItem as string) == "none")
+            {
+                transfer.ClientName = null;
+            }
+            else if ((comboBox4.SelectedItem as string) == "none")
+            {
+                transfer.ClientName = comboBox6.SelectedItem.ToString();
+            }
+            else if ((comboBox6.SelectedItem as string) == "none")
+            {
+                transfer.ClientName = comboBox4.SelectedItem.ToString();
+            }
+            //storage picking cases
+            if ((comboBox7.SelectedItem as string) != "none" && (comboBox5.SelectedItem as string) != "none")
+            {
+                transfer.ImporterStorageName = comboBox5.SelectedItem.ToString();
+                transfer.ExporterStorageName = comboBox7.SelectedItem.ToString();
+            }
+            else if ((comboBox5.SelectedItem as string) == "none")
+            {
+                transfer.ImporterStorageName = null;
+                transfer.ExporterStorageName = comboBox7.SelectedItem.ToString();
+            }
+            else if ((comboBox7.SelectedItem as string) == "none")
+            {
+                transfer.ImporterStorageName = comboBox5.SelectedItem.ToString();
+                transfer.ExporterStorageName = null;
+            }
+
             transfer.TransferDate = dateTimePicker1.Value;
             transfer.ProductionDate = dateTimePicker2.Value;
             transfer.ExpiryDate = dateTimePicker3.Value;
             transfer.ItemName = comboBox13.SelectedItem.ToString();
             transfer.UnitCount = int.Parse(textBox13.Text); ;
-            ////////making sure that there is only 1 importer/exporter in db
-            if ((comboBox4.SelectedItem as string) != "none")
-            {
-                transfer.ExporterClientName = null;
-                transfer.ExporterStorageName = null;
-            }
-            else if ((comboBox6.SelectedItem as string) != "none")
-            {
-                transfer.ImporterClientName = null;
-                transfer.ImporterStorageName = null;
-            }
+ 
             db.Transfers.Add(transfer);
 
-            //adding stored item per transfer in stored table 
+
+            //adding stored item per transfer in stored table
             Stored stored = new Stored();
-
-            string storageName = comboBox7.SelectedItem.ToString();
-            string itemName = comboBox13.SelectedItem.ToString();
-
-            if (!db.Stored.Any(s => s.StorageName == storageName && s.ItemName == itemName))
+            Stored removed = new Stored();
+            if (comboBox2.SelectedItem.ToString() == "in")
             {
-                stored.StorageName = storageName;
-                stored.ItemName = itemName;
+                stored.StorageName = comboBox5.SelectedItem.ToString();
+                stored.ItemName = comboBox13.SelectedItem.ToString();
+                stored.TotalUnits = int.Parse(textBox13.Text);
+                db.Stored.Add(stored);
             }
-            stored.TotalUnits = int.Parse(textBox13.Text);
+            else if (comboBox2.SelectedItem.ToString() == "out")
+            {
+                removed.StorageName = comboBox7.SelectedItem.ToString();
+                removed.ItemName = comboBox13.SelectedItem.ToString();
+                removed.TotalUnits = -int.Parse(textBox13.Text);
+                db.Stored.Add(removed);
+            }
+            else if (comboBox2.SelectedItem.ToString() == "internal")
+            {
+                stored.StorageName = comboBox5.SelectedItem.ToString();
+                stored.ItemName = comboBox13.SelectedItem.ToString();
+                stored.TotalUnits = int.Parse(textBox13.Text);
 
-            //if ((bool)comboBox3.SelectedItem == false)
-            //{
-            //    if (comboBox5.SelectedItem.ToString() != "none")
-            //    {
-            //        stored.TotalUnits = int.Parse(textBox13.Text);
-            //    }
-            //}
+                removed.StorageName = comboBox7.SelectedItem.ToString();
+                removed.ItemName = comboBox13.SelectedItem.ToString();
+                removed.TotalUnits = -int.Parse(textBox13.Text);
+                db.Stored.Add(stored);
+                db.Stored.Add(removed);
+            }
 
-            db.Stored.Add(stored);
             db.SaveChanges();
         }
 

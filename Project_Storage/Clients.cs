@@ -31,7 +31,7 @@ namespace Project_Storage
         [MaxLength(20)]
         public string Type { get; set; }  // Importer / Exporter
 
-        public ICollection<Transfers> ExportTransfers { get; set; }
-        public ICollection<Transfers> ImportTransfers { get; set; }
+        public ICollection<Transfers> Transfers { get; set; }
     }
+
 }

@@ -9,11 +9,11 @@ namespace Project_Storage
 {
     class Stored
     {
-        [MaxLength(100)]
+        public int Id { get; set; }  // primary key
+
         public string StorageName { get; set; }
         public Storages Storage { get; set; }
 
-        [MaxLength(100)]
         public string ItemName { get; set; }
         public Items Item { get; set; }
 
