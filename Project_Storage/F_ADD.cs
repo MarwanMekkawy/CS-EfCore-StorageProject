@@ -1,0 +1,225 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Windows.Forms.Design;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+
+namespace Project_Storage
+{
+    public partial class F_ADD : Form
+    {
+        Context db = new Context();
+        public F_ADD()
+        {
+            InitializeComponent();
+            ///client combobox
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox1.Items.Clear();
+            comboBox1.Items.Add("Importer");
+            comboBox1.Items.Add("Exporter");
+            comboBox1.SelectedItem = "Exporter";
+            ///transfer comboboxs
+            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox3.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox4.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox5.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox6.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox7.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox13.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox2.Items.Clear();
+            comboBox3.Items.Clear();
+            comboBox4.Items.Clear();
+            comboBox5.Items.Clear();
+            comboBox6.Items.Clear();
+            comboBox7.Items.Clear();
+            comboBox13.Items.Clear();
+
+            //transfer type
+            comboBox2.Items.Add("in");
+            comboBox2.Items.Add("out");
+            comboBox2.SelectedItem = "out";
+
+            //internal move?
+            comboBox3.Items.Add(true);
+            comboBox3.Items.Add(false);
+            comboBox3.SelectedItem = true;
+
+            //importer client
+            List<string> list = db.Clients.Where(x => x.Type == "Importer").Select(x => x.Name).ToList();
+            list.Insert(0, "none");                 //setting 1st value =null
+            comboBox4.DataSource = list;
+            comboBox4.SelectedIndex = 0;
+
+            //loading main list for importer/exporter storages
+            List<string> listx = db.Storages.Select(x => x.Name).ToList();
+
+            //importer storage
+            List<string> list2 = new List<string>(listx);
+            list2.Insert(0, "none");
+            comboBox5.DataSource = list2;
+            comboBox5.SelectedIndex = 0;
+
+            //exporter client
+            List<string> list3 = db.Clients.Where(x => x.Type == "Exporter").Select(x => x.Name).ToList();
+            list3.Insert(0, "none");
+            comboBox6.DataSource = list3;
+            comboBox6.SelectedIndex = 0;
+
+            //exporter storage
+            List<string> list4 = new List<string>(listx);
+            list4.Insert(0, "none");
+            comboBox7.DataSource = list4;
+            comboBox7.SelectedIndex = 0;
+
+            //item name
+            List<string> list5 = db.Items.Select(x => x.Name).ToList();
+            comboBox13.DataSource = list5;
+            comboBox13.SelectedIndex = 0;
+
+
+        }
+        //add storage button
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string name = textBox1.Text;
+            string address = textBox2.Text;
+            string super = textBox3.Text;
+            Storages storage = new Storages();
+            storage.Name = name;
+            storage.Address = address;
+            storage.Supervisor = super;
+
+            db.Storages.Add(storage);
+            db.SaveChanges();
+        }
+        //add item button
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string name = textBox6.Text;
+            string code = textBox4.Text;
+            Items item = new Items();
+            item.Name = name;
+            item.Code = code;
+            db.Items.Add(item);
+            db.SaveChanges();
+        }
+
+        //add client button
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string name = textBox8.Text;
+            string phone = textBox5.Text;
+            string fax = textBox7.Text;
+            string mobile = textBox11.Text;
+            string email = textBox9.Text;
+            string website = textBox10.Text;
+            string type = comboBox1.SelectedItem.ToString();
+
+
+            Clients client = new Clients();
+            client.Name = name;
+            client.Phone = phone;
+            client.Fax = fax;
+            client.Mobile = mobile;
+            client.Email = email;
+            client.Website = website;
+            client.Type = type;
+            db.Clients.Add(client);
+            db.SaveChanges();
+        }
+        //add transfer button
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Transfers transfer = new Transfers();
+            transfer.Type = comboBox2.SelectedItem.ToString();
+            transfer.Move = (bool)comboBox3.SelectedItem;
+            transfer.ImporterClientName = comboBox4.SelectedItem.ToString();
+            transfer.ImporterStorageName = comboBox5.SelectedItem.ToString();
+            transfer.ExporterClientName = comboBox6.SelectedItem.ToString();
+            transfer.ExporterStorageName = comboBox7.SelectedItem.ToString();
+            transfer.TransferDate = dateTimePicker1.Value;
+            transfer.ProductionDate = dateTimePicker2.Value;
+            transfer.ExpiryDate = dateTimePicker3.Value;
+            transfer.ItemName = comboBox13.SelectedItem.ToString();
+            transfer.UnitCount = int.Parse(textBox13.Text); ;
+            ////////making sure that there is only 1 importer/exporter
+            if ((comboBox4.SelectedItem as string) != "none")
+            {
+                transfer.ExporterClientName = null;
+                transfer.ExporterStorageName = null;
+            }
+            else if ((comboBox6.SelectedItem as string) != "none")
+            {
+                transfer.ImporterClientName = null;
+                transfer.ImporterStorageName = null;
+            }
+            db.Transfers.Add(transfer); 
+            db.SaveChanges();
+        }
+        ////closing importer storage/exporter client options
+        private void comboBox4_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if ((comboBox4.SelectedItem as string) != "none")
+            {
+                comboBox6.Enabled = false;
+                comboBox7.Enabled = false;
+            }
+            else
+            {
+                comboBox6.Enabled = true;
+                comboBox7.Enabled = true;
+            }
+        }
+        ////closing importing client/exporter storage  options
+        private void comboBox6_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if ((comboBox6.SelectedItem as string) != "none")
+            {
+                comboBox4.Enabled = false;
+                comboBox5.Enabled = false;
+            }
+            else
+            {
+                comboBox4.Enabled = true;
+                comboBox5.Enabled = true;
+            }
+        }
+        //assuring that importing storage not the exporting storage at same time
+        private void comboBox5_SelectedValueChanged(object sender, EventArgs e)
+        {
+            //List<string> list4 = db.Storages.Select(x => x.Name).ToList();
+            //list4.Insert(0, "none");
+            //string selected = comboBox5.SelectedItem as string;
+            //if (selected != null)
+            //{
+            //    list4.Remove(selected);
+            //}
+            //comboBox7.DataSource = list4;
+        }
+        //vise versa
+        private void comboBox7_SelectedValueChanged(object sender, EventArgs e)
+        {
+            //List<string> list2 = db.Storages.Select(x => x.Name).ToList();
+            //list2.Insert(0, "none");
+            //string selected = comboBox7.SelectedItem as string;
+            //if (selected != null)
+            //{
+            //    list2.Remove(selected);
+            //}
+            //comboBox5.DataSource = list2;
+        }
+        //////disposing the connection
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            db.Dispose();
+            base.OnFormClosed(e);
+        }
+
+    }
+}
