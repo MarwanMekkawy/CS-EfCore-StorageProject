@@ -188,8 +188,32 @@ namespace Project_Storage
                 transfer.ImporterStorageName = null;
             }
             db.Transfers.Add(transfer);
+
+            //adding stored item per transfer in stored table 
+            Stored stored = new Stored();
+
+            string storageName = comboBox7.SelectedItem.ToString();
+            string itemName = comboBox13.SelectedItem.ToString();
+
+            if (!db.Stored.Any(s => s.StorageName == storageName && s.ItemName == itemName))
+            {
+                stored.StorageName = storageName;
+                stored.ItemName = itemName;
+            }
+            stored.TotalUnits = int.Parse(textBox13.Text);
+
+            //if ((bool)comboBox3.SelectedItem == false)
+            //{
+            //    if (comboBox5.SelectedItem.ToString() != "none")
+            //    {
+            //        stored.TotalUnits = int.Parse(textBox13.Text);
+            //    }
+            //}
+
+            db.Stored.Add(stored);
             db.SaveChanges();
         }
+
 
         //making sure internal/external transfers triggers the right comboboxes [ensuring no combo conflicts]
         private void comboBox3_SelectedValueChanged(object sender, EventArgs e)
@@ -251,14 +275,14 @@ namespace Project_Storage
             if ((comboBox4.SelectedItem as string) != "none")
             {
                 comboBox6.SelectedItem = "none";
-                comboBox7.SelectedItem = "none";
+                comboBox5.SelectedItem = "none";
                 comboBox6.Enabled = false;
-                comboBox7.Enabled = false;
+                comboBox5.Enabled = false;
             }
             else
             {
                 comboBox6.Enabled = true;
-                comboBox7.Enabled = true;
+                comboBox5.Enabled = true;
             }
         }
 
@@ -268,14 +292,14 @@ namespace Project_Storage
             if ((comboBox6.SelectedItem as string) != "none")
             {
                 comboBox4.SelectedItem = "none";
-                comboBox5.SelectedItem = "none";
+                comboBox7.SelectedItem = "none";
                 comboBox4.Enabled = false;
-                comboBox5.Enabled = false;
+                comboBox7.Enabled = false;
             }
             else
             {
                 comboBox4.Enabled = true;
-                comboBox5.Enabled = true;
+                comboBox7.Enabled = true;
             }
         }
 
