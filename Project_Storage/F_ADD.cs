@@ -16,13 +16,13 @@ namespace Project_Storage
     {
         Context db = new Context();
         //func.s for refreshing lists
-        public void ImportClient() 
+        public void ImportClient()
         {
             List<string> list = db.Clients.Where(x => x.Type == "Importer").Select(x => x.Name).ToList();
             list.Insert(0, "none");                 //setting 1st value =null
             comboBox4.DataSource = list;
         }
-        public void ExportClient() 
+        public void ExportClient()
         {
             List<string> list3 = db.Clients.Where(x => x.Type == "Exporter").Select(x => x.Name).ToList();
             list3.Insert(0, "none");
@@ -40,14 +40,14 @@ namespace Project_Storage
             list4.Insert(0, "none");
             comboBox7.DataSource = list4;
         }
-        public void NewItem() 
+        public void NewItem()
         {
             List<string> list5 = db.Items.Select(x => x.Name).ToList();
             comboBox13.DataSource = list5;
         }
 
         public F_ADD()
-        {
+        {    
             InitializeComponent();
             ///client combobox
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -99,7 +99,7 @@ namespace Project_Storage
             comboBox7.SelectedIndex = 0;
 
             //item name
-            NewItem();  
+            NewItem();
             comboBox13.SelectedIndex = 0;
 
 
@@ -191,16 +191,19 @@ namespace Project_Storage
             db.SaveChanges();
         }
 
-        //making sure internal/external transfers triggers the right comboboxes
+        //making sure internal/external transfers triggers the right comboboxes [ensuring no combo conflicts]
         private void comboBox3_SelectedValueChanged(object sender, EventArgs e)
         {
             if ((bool)comboBox3.SelectedItem == true)
             {
+                comboBox4.SelectedItem = "none";
+                comboBox6.SelectedItem = "none";
+                comboBox2.SelectedItem = "internal";
                 comboBox4.Enabled = false;
                 comboBox6.Enabled = false;
                 comboBox2.Enabled = false;
-                comboBox2.SelectedItem = "internal";
-                comboBox1.SelectedItem = true;
+
+
             }
             else if ((bool)comboBox3.SelectedItem == false)
             {
@@ -209,12 +212,46 @@ namespace Project_Storage
                 comboBox2.Enabled = true;
             }
         }
+        private void comboBox2_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if ((comboBox2.SelectedItem as string) == "in")
+            {
+                comboBox4.SelectedItem = "none";
+                comboBox7.SelectedItem = "none";
+                comboBox4.Enabled = false;
+                comboBox7.Enabled = false;
+                comboBox5.Enabled = true;
+                comboBox6.Enabled = true;
+            }
+            else if ((comboBox2.SelectedItem as string) == "out")
+            {
+                comboBox5.SelectedItem = "none";
+                comboBox6.SelectedItem = "none";
+                comboBox5.Enabled = false;
+                comboBox6.Enabled = false;
+                comboBox4.Enabled = true;
+                comboBox7.Enabled = true;
+            }
+            else if ((comboBox2.SelectedItem as string) == "internal")
+            {
+                comboBox4.SelectedItem = "none";
+                comboBox6.SelectedItem = "none";
+                comboBox3.SelectedItem = true;
+                comboBox4.Enabled = false;
+                comboBox6.Enabled = false;
+                comboBox5.Enabled = true;
+                comboBox7.Enabled = true;
+                
+            }
+        }
 
         ////closing importer storage/exporter client options
         private void comboBox4_SelectedValueChanged(object sender, EventArgs e)
         {
             if ((comboBox4.SelectedItem as string) != "none")
             {
+                comboBox6.SelectedItem = "none";
+                comboBox7.SelectedItem = "none";
                 comboBox6.Enabled = false;
                 comboBox7.Enabled = false;
             }
@@ -230,6 +267,8 @@ namespace Project_Storage
         {
             if ((comboBox6.SelectedItem as string) != "none")
             {
+                comboBox4.SelectedItem = "none";
+                comboBox5.SelectedItem = "none";
                 comboBox4.Enabled = false;
                 comboBox5.Enabled = false;
             }
@@ -239,13 +278,14 @@ namespace Project_Storage
                 comboBox5.Enabled = true;
             }
         }
-        
+
         //////disposing the connection
         protected override void OnFormClosed(FormClosedEventArgs e)
         {
             db.Dispose();
             base.OnFormClosed(e);
         }
+
 
 
 
@@ -290,6 +330,7 @@ namespace Project_Storage
             //}
             //comboBox5.DataSource = list2;
         }
-       
+
+        
     }
 }
