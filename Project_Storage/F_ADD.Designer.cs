@@ -334,18 +334,18 @@
             label15.AutoSize = true;
             label15.Location = new Point(285, 299);
             label15.Name = "label15";
-            label15.Size = new Size(91, 15);
+            label15.Size = new Size(98, 15);
             label15.TabIndex = 65;
-            label15.Text = "ExporterStorage";
+            label15.Text = "ExportingStorage";
             // 
             // label16
             // 
             label16.AutoSize = true;
             label16.Location = new Point(284, 272);
             label16.Name = "label16";
-            label16.Size = new Size(93, 15);
+            label16.Size = new Size(100, 15);
             label16.TabIndex = 63;
-            label16.Text = "ImporterStorage";
+            label16.Text = "ImportingStorage";
             // 
             // button4
             // 

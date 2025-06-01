@@ -15,6 +15,37 @@ namespace Project_Storage
     public partial class F_ADD : Form
     {
         Context db = new Context();
+        //func.s for refreshing lists
+        public void ImportClient() 
+        {
+            List<string> list = db.Clients.Where(x => x.Type == "Importer").Select(x => x.Name).ToList();
+            list.Insert(0, "none");                 //setting 1st value =null
+            comboBox4.DataSource = list;
+        }
+        public void ExportClient() 
+        {
+            List<string> list3 = db.Clients.Where(x => x.Type == "Exporter").Select(x => x.Name).ToList();
+            list3.Insert(0, "none");
+            comboBox6.DataSource = list3;
+        }
+        public void ImportStorage()
+        {
+            List<string> list2 = db.Storages.Select(x => x.Name).ToList();
+            list2.Insert(0, "none");
+            comboBox5.DataSource = list2;
+        }
+        public void ExportStorage()
+        {
+            List<string> list4 = db.Storages.Select(x => x.Name).ToList();
+            list4.Insert(0, "none");
+            comboBox7.DataSource = list4;
+        }
+        public void NewItem() 
+        {
+            List<string> list5 = db.Items.Select(x => x.Name).ToList();
+            comboBox13.DataSource = list5;
+        }
+
         public F_ADD()
         {
             InitializeComponent();
@@ -52,35 +83,23 @@ namespace Project_Storage
             comboBox3.SelectedItem = false;
 
             //importer client
-            List<string> list = db.Clients.Where(x => x.Type == "Importer").Select(x => x.Name).ToList();
-            list.Insert(0, "none");                 //setting 1st value =null
-            comboBox4.DataSource = list;
+            ImportClient();
             comboBox4.SelectedIndex = 0;
 
-            //loading main list for importer/exporter storages
-            List<string> listx = db.Storages.Select(x => x.Name).ToList();
-
             //importer storage
-            List<string> list2 = new List<string>(listx);
-            list2.Insert(0, "none");
-            comboBox5.DataSource = list2;
+            ImportStorage();
             comboBox5.SelectedIndex = 0;
 
             //exporter client
-            List<string> list3 = db.Clients.Where(x => x.Type == "Exporter").Select(x => x.Name).ToList();
-            list3.Insert(0, "none");
-            comboBox6.DataSource = list3;
+            ExportClient();
             comboBox6.SelectedIndex = 0;
 
             //exporter storage
-            List<string> list4 = new List<string>(listx);
-            list4.Insert(0, "none");
-            comboBox7.DataSource = list4;
+            ExportStorage();
             comboBox7.SelectedIndex = 0;
 
             //item name
-            List<string> list5 = db.Items.Select(x => x.Name).ToList();
-            comboBox13.DataSource = list5;
+            NewItem();  
             comboBox13.SelectedIndex = 0;
 
 
@@ -98,6 +117,9 @@ namespace Project_Storage
 
             db.Storages.Add(storage);
             db.SaveChanges();
+
+            ExportStorage(); //refreshs the cobmo list including storages
+            ImportStorage();
         }
         //add item button
         private void button2_Click(object sender, EventArgs e)
@@ -109,6 +131,8 @@ namespace Project_Storage
             item.Code = code;
             db.Items.Add(item);
             db.SaveChanges();
+
+            NewItem(); //refreshs the cobmo list including item
         }
 
         //add client button
@@ -133,6 +157,9 @@ namespace Project_Storage
             client.Type = type;
             db.Clients.Add(client);
             db.SaveChanges();
+
+            ImportClient(); //refreshs the cobmo list including client
+            ExportClient();
         }
         //add transfer button
         private void button4_Click(object sender, EventArgs e)
@@ -149,7 +176,7 @@ namespace Project_Storage
             transfer.ExpiryDate = dateTimePicker3.Value;
             transfer.ItemName = comboBox13.SelectedItem.ToString();
             transfer.UnitCount = int.Parse(textBox13.Text); ;
-            ////////making sure that there is only 1 importer/exporter
+            ////////making sure that there is only 1 importer/exporter in db
             if ((comboBox4.SelectedItem as string) != "none")
             {
                 transfer.ExporterClientName = null;
@@ -163,6 +190,26 @@ namespace Project_Storage
             db.Transfers.Add(transfer);
             db.SaveChanges();
         }
+
+        //making sure internal/external transfers triggers the right comboboxes
+        private void comboBox3_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if ((bool)comboBox3.SelectedItem == true)
+            {
+                comboBox4.Enabled = false;
+                comboBox6.Enabled = false;
+                comboBox2.Enabled = false;
+                comboBox2.SelectedItem = "internal";
+                comboBox1.SelectedItem = true;
+            }
+            else if ((bool)comboBox3.SelectedItem == false)
+            {
+                comboBox4.Enabled = true;
+                comboBox6.Enabled = true;
+                comboBox2.Enabled = true;
+            }
+        }
+
         ////closing importer storage/exporter client options
         private void comboBox4_SelectedValueChanged(object sender, EventArgs e)
         {
@@ -177,6 +224,7 @@ namespace Project_Storage
                 comboBox7.Enabled = true;
             }
         }
+
         ////closing importing client/exporter storage  options
         private void comboBox6_SelectedValueChanged(object sender, EventArgs e)
         {
@@ -191,6 +239,33 @@ namespace Project_Storage
                 comboBox5.Enabled = true;
             }
         }
+        
+        //////disposing the connection
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            db.Dispose();
+            base.OnFormClosed(e);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         //assuring that importing storage not the exporting storage at same time (endless loop problem to solve) #######
         private void comboBox5_SelectedValueChanged(object sender, EventArgs e)
         {
@@ -215,31 +290,6 @@ namespace Project_Storage
             //}
             //comboBox5.DataSource = list2;
         }
-        //making sure internal/external transfers triggers the right comboboxes
-        private void comboBox3_SelectedValueChanged(object sender, EventArgs e)
-        {
-            if ((bool)comboBox3.SelectedItem == true)
-            {
-                comboBox4.Enabled = false;
-                comboBox6.Enabled = false;
-                comboBox2.Enabled = false;
-                comboBox2.SelectedItem = "internal";
-                comboBox1.SelectedItem = true;
-            }
-            else if ((bool)comboBox3.SelectedItem == false)
-            {
-                comboBox4.Enabled = true;
-                comboBox6.Enabled = true;
-                comboBox2.Enabled = true;
-            }
-        }
-        //////disposing the connection
-        protected override void OnFormClosed(FormClosedEventArgs e)
-        {
-            db.Dispose();
-            base.OnFormClosed(e);
-        }
-
        
     }
 }
