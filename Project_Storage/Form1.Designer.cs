@@ -37,7 +37,6 @@
             comboBox5 = new ComboBox();
             button5 = new Button();
             label5 = new Label();
-            button6 = new Button();
             button7 = new Button();
             comboBox6 = new ComboBox();
             button8 = new Button();
@@ -65,9 +64,9 @@
             // 
             // button1
             // 
-            button1.Location = new Point(550, 21);
+            button1.Location = new Point(522, 24);
             button1.Name = "button1";
-            button1.Size = new Size(105, 50);
+            button1.Size = new Size(133, 69);
             button1.TabIndex = 2;
             button1.Text = "ADD";
             button1.UseVisualStyleBackColor = true;
@@ -142,21 +141,11 @@
             label5.TabIndex = 16;
             label5.Text = "Get Storage Report";
             // 
-            // button6
-            // 
-            button6.Location = new Point(550, 133);
-            button6.Name = "button6";
-            button6.Size = new Size(105, 50);
-            button6.TabIndex = 23;
-            button6.Text = "Delete";
-            button6.UseVisualStyleBackColor = true;
-            button6.Click += button6_Click;
-            // 
             // button7
             // 
-            button7.Location = new Point(550, 77);
+            button7.Location = new Point(522, 105);
             button7.Name = "button7";
-            button7.Size = new Size(105, 50);
+            button7.Size = new Size(133, 69);
             button7.TabIndex = 24;
             button7.Text = "Edit";
             button7.UseVisualStyleBackColor = true;
@@ -286,7 +275,7 @@
             // comboBox9
             // 
             comboBox9.FormattingEnabled = true;
-            comboBox9.Location = new Point(345, 48);
+            comboBox9.Location = new Point(345, 43);
             comboBox9.Name = "comboBox9";
             comboBox9.Size = new Size(121, 23);
             comboBox9.TabIndex = 49;
@@ -380,7 +369,6 @@
             Controls.Add(label12);
             Controls.Add(comboBox8);
             Controls.Add(button7);
-            Controls.Add(button6);
             Controls.Add(comboBox5);
             Controls.Add(button5);
             Controls.Add(label5);
@@ -406,7 +394,6 @@
         private ComboBox comboBox5;
         private Button button5;
         private Label label5;
-        private Button button6;
         private Button button7;
         private ComboBox comboBox6;
         private Button button8;

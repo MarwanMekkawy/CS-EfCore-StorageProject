@@ -80,6 +80,10 @@
             label20 = new Label();
             label22 = new Label();
             label24 = new Label();
+            button2 = new Button();
+            button6 = new Button();
+            button7 = new Button();
+            button9 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -241,9 +245,9 @@
             // 
             // button4
             // 
-            button4.Location = new Point(292, 430);
+            button4.Location = new Point(581, 430);
             button4.Name = "button4";
-            button4.Size = new Size(565, 31);
+            button4.Size = new Size(274, 31);
             button4.TabIndex = 124;
             button4.Text = "Edit Transfer";
             button4.UseVisualStyleBackColor = true;
@@ -269,7 +273,7 @@
             // label19
             // 
             label19.AutoSize = true;
-            label19.Location = new Point(291, 44);
+            label19.Location = new Point(294, 47);
             label19.Name = "label19";
             label19.Size = new Size(75, 15);
             label19.TabIndex = 121;
@@ -342,12 +346,13 @@
             // 
             // button3
             // 
-            button3.Location = new Point(9, 438);
+            button3.Location = new Point(116, 438);
             button3.Name = "button3";
-            button3.Size = new Size(238, 23);
+            button3.Size = new Size(134, 23);
             button3.TabIndex = 112;
             button3.Text = "Edit Client";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // textBox5
             // 
@@ -399,12 +404,13 @@
             // 
             // button1
             // 
-            button1.Location = new Point(11, 194);
+            button1.Location = new Point(117, 194);
             button1.Name = "button1";
-            button1.Size = new Size(238, 23);
+            button1.Size = new Size(132, 23);
             button1.TabIndex = 100;
             button1.Text = "Edit Storage";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // textBox3
             // 
@@ -471,6 +477,7 @@
             comboBox9.Name = "comboBox9";
             comboBox9.Size = new Size(131, 23);
             comboBox9.TabIndex = 147;
+            comboBox9.TextChanged += comboBox9_TextChanged;
             // 
             // comboBox10
             // 
@@ -479,12 +486,13 @@
             comboBox10.Name = "comboBox10";
             comboBox10.Size = new Size(133, 23);
             comboBox10.TabIndex = 148;
+            comboBox10.TextChanged += comboBox10_TextChanged;
             // 
             // button8
             // 
-            button8.Location = new Point(10, 65);
+            button8.Location = new Point(116, 65);
             button8.Name = "button8";
-            button8.Size = new Size(238, 23);
+            button8.Size = new Size(132, 23);
             button8.TabIndex = 151;
             button8.Text = "Edit Item";
             button8.UseVisualStyleBackColor = true;
@@ -517,11 +525,52 @@
             label24.TabIndex = 156;
             label24.Text = "Search Client ";
             // 
+            // button2
+            // 
+            button2.Location = new Point(11, 65);
+            button2.Name = "button2";
+            button2.Size = new Size(92, 23);
+            button2.TabIndex = 157;
+            button2.Text = "Delete Item";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
+            // button6
+            // 
+            button6.Location = new Point(12, 194);
+            button6.Name = "button6";
+            button6.Size = new Size(92, 23);
+            button6.TabIndex = 158;
+            button6.Text = "Delete Item";
+            button6.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            button7.Location = new Point(12, 438);
+            button7.Name = "button7";
+            button7.Size = new Size(92, 23);
+            button7.TabIndex = 159;
+            button7.Text = "Delete Item";
+            button7.UseVisualStyleBackColor = true;
+            // 
+            // button9
+            // 
+            button9.Location = new Point(294, 430);
+            button9.Name = "button9";
+            button9.Size = new Size(274, 31);
+            button9.TabIndex = 160;
+            button9.Text = "Delete Transfer";
+            button9.UseVisualStyleBackColor = true;
+            // 
             // F_Edit
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(874, 483);
+            Controls.Add(button9);
+            Controls.Add(button7);
+            Controls.Add(button6);
+            Controls.Add(button2);
             Controls.Add(label24);
             Controls.Add(label22);
             Controls.Add(label20);
@@ -635,5 +684,9 @@
         private Label label20;
         private Label label22;
         private Label label24;
+        private Button button2;
+        private Button button6;
+        private Button button7;
+        private Button button9;
     }
 }

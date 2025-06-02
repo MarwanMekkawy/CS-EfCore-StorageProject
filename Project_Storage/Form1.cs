@@ -22,13 +22,6 @@ namespace Project_Storage
             Edit.FormClosed += (s, args) => this.Show();
             Edit.Show();
         }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            F_Delete Delete = new F_Delete();
-            Delete.FormClosed += (s, args) => this.Show();
-            Delete.Show();
-        }
+ 
     }
 }

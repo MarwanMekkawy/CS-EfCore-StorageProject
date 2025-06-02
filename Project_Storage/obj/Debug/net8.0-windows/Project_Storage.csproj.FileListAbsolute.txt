@@ -115,7 +115,6 @@ F:\IT\projects\C-_EfCore_StorageProgect\Project_Storage\bin\Debug\net8.0-windows
 F:\IT\projects\C-_EfCore_StorageProgect\Project_Storage\obj\Debug\net8.0-windows\Project_Storage.csproj.AssemblyReference.cache
 F:\IT\projects\C-_EfCore_StorageProgect\Project_Storage\obj\Debug\net8.0-windows\Project_Storage.Form1.resources
 F:\IT\projects\C-_EfCore_StorageProgect\Project_Storage\obj\Debug\net8.0-windows\Project_Storage.F_ADD.resources
-F:\IT\projects\C-_EfCore_StorageProgect\Project_Storage\obj\Debug\net8.0-windows\Project_Storage.F_Delete.resources
 F:\IT\projects\C-_EfCore_StorageProgect\Project_Storage\obj\Debug\net8.0-windows\Project_Storage.F_Edit.resources
 F:\IT\projects\C-_EfCore_StorageProgect\Project_Storage\obj\Debug\net8.0-windows\Project_Storage.F_Result.resources
 F:\IT\projects\C-_EfCore_StorageProgect\Project_Storage\obj\Debug\net8.0-windows\Project_Storage.csproj.GenerateResource.cache
