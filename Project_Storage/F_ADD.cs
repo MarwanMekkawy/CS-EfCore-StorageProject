@@ -348,14 +348,6 @@ namespace Project_Storage
 
 
 
-
-
-
-
-
-
-
-
         //assuring that importing storage not the exporting storage at same time (endless loop problem to solve) #######
         private void comboBox5_SelectedValueChanged(object sender, EventArgs e)
         {
