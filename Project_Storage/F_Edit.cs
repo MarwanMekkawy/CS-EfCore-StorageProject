@@ -709,13 +709,13 @@ namespace Project_Storage
 
             if (transfer.Type == "in")
             {
-                comboBox6.SelectedItem = transfer.ClientName ?? "none"; // Exporter client
+                comboBox6.SelectedItem = transfer.ClientName ?? "none"; //Exporter client
                 comboBox5.SelectedItem = transfer.ImporterStorageName ?? "none";
                 comboBox7.SelectedItem = transfer.ExporterStorageName ?? "none";
             }
             else if (transfer.Type == "out")
             {
-                comboBox4.SelectedItem = transfer.ClientName ?? "none"; // Importer client
+                comboBox4.SelectedItem = transfer.ClientName ?? "none"; //Importer client
                 comboBox5.SelectedItem = transfer.ImporterStorageName ?? "none";
                 comboBox7.SelectedItem = transfer.ExporterStorageName ?? "none";
             }
@@ -729,7 +729,7 @@ namespace Project_Storage
         //Delete transfer
         private void button9_Click(object sender, EventArgs e)
         {
-            // Get selected transfer safely
+            //select transfer 
             Transfers selectedTransfer = null;
 
             if (dataGridView1.CurrentRow?.DataBoundItem is Transfers currentTransfer)
@@ -747,28 +747,24 @@ namespace Project_Storage
                 return;
             }
 
-            // Ask for confirmation
-            var confirm = MessageBox.Show("Are you sure you want to delete this transfer?", "Confirm Delete", MessageBoxButtons.YesNo);
+            // warning
+            var confirm = MessageBox.Show("Are you sure you want to delete this transfer?", "Warning", MessageBoxButtons.YesNo);
             if (confirm != DialogResult.Yes) return;
 
-            // Delete and save
+            
             db.Transfers.Remove(selectedTransfer);
             db.SaveChanges();
 
-            // Refresh grid
+            // Refresh 
             dataGridView1.DataSource = GetTransfers(selectedTransfer.Move == true);
         }
 
-
-
-
-
-
-
-
-
-
-        //disposing connection
+        //////disposing the connection
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            db.Dispose();
+            base.OnFormClosed(e);
+        }
     }
 }
 

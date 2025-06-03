@@ -28,11 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             button1 = new Button();
-            comboBox1 = new ComboBox();
             label2 = new Label();
             label3 = new Label();
-            comboBox4 = new ComboBox();
             label4 = new Label();
             comboBox5 = new ComboBox();
             button5 = new Button();
@@ -41,355 +40,317 @@
             comboBox6 = new ComboBox();
             button8 = new Button();
             label9 = new Label();
-            comboBox7 = new ComboBox();
             label10 = new Label();
             label11 = new Label();
             label12 = new Label();
-            comboBox8 = new ComboBox();
             button2 = new Button();
             label1 = new Label();
-            comboBox2 = new ComboBox();
             label6 = new Label();
             label7 = new Label();
-            comboBox3 = new ComboBox();
             comboBox9 = new ComboBox();
             button3 = new Button();
             label8 = new Label();
             label13 = new Label();
             label14 = new Label();
-            textBox1 = new TextBox();
             button4 = new Button();
             label16 = new Label();
+            dateTimePicker1 = new DateTimePicker();
+            dateTimePicker2 = new DateTimePicker();
+            dateTimePicker3 = new DateTimePicker();
+            dateTimePicker4 = new DateTimePicker();
+            dateTimePicker5 = new DateTimePicker();
+            dateTimePicker6 = new DateTimePicker();
+            dataGridView1 = new DataGridView();
+            label15 = new Label();
+            label17 = new Label();
+            label18 = new Label();
+            label19 = new Label();
+            label21 = new Label();
+            numericUpDown1 = new NumericUpDown();
+            numericUpDown2 = new NumericUpDown();
+            numericUpDown3 = new NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown3).BeginInit();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(522, 24);
+            resources.ApplyResources(button1, "button1");
             button1.Name = "button1";
-            button1.Size = new Size(133, 69);
-            button1.TabIndex = 2;
-            button1.Text = "ADD";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(100, 80);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(121, 23);
-            comboBox1.TabIndex = 3;
-            // 
             // label2
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(12, 117);
+            resources.ApplyResources(label2, "label2");
             label2.Name = "label2";
-            label2.Size = new Size(19, 15);
-            label2.TabIndex = 4;
-            label2.Text = "To";
             // 
             // label3
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(12, 83);
+            resources.ApplyResources(label3, "label3");
             label3.Name = "label3";
-            label3.Size = new Size(35, 15);
-            label3.TabIndex = 8;
-            label3.Text = "From";
-            // 
-            // comboBox4
-            // 
-            comboBox4.FormattingEnabled = true;
-            comboBox4.Location = new Point(100, 114);
-            comboBox4.Name = "comboBox4";
-            comboBox4.Size = new Size(121, 23);
-            comboBox4.TabIndex = 15;
             // 
             // label4
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(12, 51);
+            resources.ApplyResources(label4, "label4");
             label4.Name = "label4";
-            label4.Size = new Size(82, 15);
-            label4.TabIndex = 12;
-            label4.Text = "Storage Name";
             // 
             // comboBox5
             // 
             comboBox5.FormattingEnabled = true;
-            comboBox5.Location = new Point(100, 48);
+            resources.ApplyResources(comboBox5, "comboBox5");
             comboBox5.Name = "comboBox5";
-            comboBox5.Size = new Size(121, 23);
-            comboBox5.TabIndex = 19;
+            comboBox5.SelectedValueChanged += comboBox5_SelectedValueChanged;
             // 
             // button5
             // 
-            button5.Location = new Point(12, 151);
+            resources.ApplyResources(button5, "button5");
             button5.Name = "button5";
-            button5.Size = new Size(209, 23);
-            button5.TabIndex = 18;
-            button5.Text = "Print";
             button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
             // 
             // label5
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(68, 9);
+            resources.ApplyResources(label5, "label5");
             label5.Name = "label5";
-            label5.Size = new Size(106, 15);
-            label5.TabIndex = 16;
-            label5.Text = "Get Storage Report";
             // 
             // button7
             // 
-            button7.Location = new Point(522, 105);
+            resources.ApplyResources(button7, "button7");
             button7.Name = "button7";
-            button7.Size = new Size(133, 69);
-            button7.TabIndex = 24;
-            button7.Text = "Edit";
             button7.UseVisualStyleBackColor = true;
             button7.Click += button7_Click;
             // 
             // comboBox6
             // 
             comboBox6.FormattingEnabled = true;
-            comboBox6.Location = new Point(100, 245);
+            resources.ApplyResources(comboBox6, "comboBox6");
             comboBox6.Name = "comboBox6";
-            comboBox6.Size = new Size(121, 23);
-            comboBox6.TabIndex = 32;
             // 
             // button8
             // 
-            button8.Location = new Point(12, 348);
+            resources.ApplyResources(button8, "button8");
             button8.Name = "button8";
-            button8.Size = new Size(209, 23);
-            button8.TabIndex = 31;
-            button8.Text = "Print";
             button8.UseVisualStyleBackColor = true;
+            button8.Click += button8_Click;
             // 
             // label9
             // 
-            label9.AutoSize = true;
-            label9.Location = new Point(68, 206);
+            resources.ApplyResources(label9, "label9");
             label9.Name = "label9";
-            label9.Size = new Size(90, 15);
-            label9.TabIndex = 30;
-            label9.Text = "Get item Report";
-            // 
-            // comboBox7
-            // 
-            comboBox7.FormattingEnabled = true;
-            comboBox7.Location = new Point(100, 311);
-            comboBox7.Name = "comboBox7";
-            comboBox7.Size = new Size(121, 23);
-            comboBox7.TabIndex = 29;
             // 
             // label10
             // 
-            label10.AutoSize = true;
-            label10.Location = new Point(12, 248);
+            resources.ApplyResources(label10, "label10");
             label10.Name = "label10";
-            label10.Size = new Size(66, 15);
-            label10.TabIndex = 28;
-            label10.Text = "Item Name";
             // 
             // label11
             // 
-            label11.AutoSize = true;
-            label11.Location = new Point(12, 280);
+            resources.ApplyResources(label11, "label11");
             label11.Name = "label11";
-            label11.Size = new Size(35, 15);
-            label11.TabIndex = 27;
-            label11.Text = "From";
             // 
             // label12
             // 
-            label12.AutoSize = true;
-            label12.Location = new Point(12, 314);
+            resources.ApplyResources(label12, "label12");
             label12.Name = "label12";
-            label12.Size = new Size(19, 15);
-            label12.TabIndex = 26;
-            label12.Text = "To";
-            // 
-            // comboBox8
-            // 
-            comboBox8.FormattingEnabled = true;
-            comboBox8.Location = new Point(100, 277);
-            comboBox8.Name = "comboBox8";
-            comboBox8.Size = new Size(121, 23);
-            comboBox8.TabIndex = 25;
             // 
             // button2
             // 
-            button2.Location = new Point(257, 348);
+            resources.ApplyResources(button2, "button2");
             button2.Name = "button2";
-            button2.Size = new Size(209, 23);
-            button2.TabIndex = 38;
-            button2.Text = "Print";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(296, 206);
+            resources.ApplyResources(label1, "label1");
             label1.Name = "label1";
-            label1.Size = new Size(107, 15);
-            label1.TabIndex = 37;
-            label1.Text = "Get Transfer Report";
-            // 
-            // comboBox2
-            // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(345, 279);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(121, 23);
-            comboBox2.TabIndex = 42;
             // 
             // label6
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(257, 248);
+            resources.ApplyResources(label6, "label6");
             label6.Name = "label6";
-            label6.Size = new Size(35, 15);
-            label6.TabIndex = 41;
-            label6.Text = "From";
             // 
             // label7
             // 
-            label7.AutoSize = true;
-            label7.Location = new Point(257, 282);
+            resources.ApplyResources(label7, "label7");
             label7.Name = "label7";
-            label7.Size = new Size(19, 15);
-            label7.TabIndex = 40;
-            label7.Text = "To";
-            // 
-            // comboBox3
-            // 
-            comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(345, 245);
-            comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(121, 23);
-            comboBox3.TabIndex = 39;
             // 
             // comboBox9
             // 
             comboBox9.FormattingEnabled = true;
-            comboBox9.Location = new Point(345, 43);
+            resources.ApplyResources(comboBox9, "comboBox9");
             comboBox9.Name = "comboBox9";
-            comboBox9.Size = new Size(121, 23);
-            comboBox9.TabIndex = 49;
             // 
             // button3
             // 
-            button3.Location = new Point(257, 151);
+            resources.ApplyResources(button3, "button3");
             button3.Name = "button3";
-            button3.Size = new Size(209, 23);
-            button3.TabIndex = 48;
-            button3.Text = "Print";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // label8
             // 
-            label8.AutoSize = true;
-            label8.Location = new Point(282, 9);
+            resources.ApplyResources(label8, "label8");
             label8.Name = "label8";
-            label8.Size = new Size(157, 15);
-            label8.TabIndex = 47;
-            label8.Text = "Get item Store Period Report";
             // 
             // label13
             // 
-            label13.AutoSize = true;
-            label13.Location = new Point(257, 51);
+            resources.ApplyResources(label13, "label13");
             label13.Name = "label13";
-            label13.Size = new Size(66, 15);
-            label13.TabIndex = 45;
-            label13.Text = "Item Name";
             // 
             // label14
             // 
-            label14.AutoSize = true;
-            label14.Location = new Point(257, 86);
+            resources.ApplyResources(label14, "label14");
             label14.Name = "label14";
-            label14.Size = new Size(62, 15);
-            label14.TabIndex = 52;
-            label14.Text = "Stayed For";
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(345, 86);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(121, 23);
-            textBox1.TabIndex = 53;
             // 
             // button4
             // 
-            button4.Location = new Point(509, 233);
+            resources.ApplyResources(button4, "button4");
             button4.Name = "button4";
-            button4.Size = new Size(146, 138);
-            button4.TabIndex = 56;
-            button4.Text = "Print";
             button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
             // label16
             // 
-            label16.AutoSize = true;
-            label16.Location = new Point(509, 206);
+            resources.ApplyResources(label16, "label16");
             label16.Name = "label16";
-            label16.Size = new Size(146, 15);
-            label16.TabIndex = 55;
-            label16.Text = "Get Almost Expired Report";
+            // 
+            // dateTimePicker1
+            // 
+            resources.ApplyResources(dateTimePicker1, "dateTimePicker1");
+            dateTimePicker1.Name = "dateTimePicker1";
+            // 
+            // dateTimePicker2
+            // 
+            resources.ApplyResources(dateTimePicker2, "dateTimePicker2");
+            dateTimePicker2.Name = "dateTimePicker2";
+            // 
+            // dateTimePicker3
+            // 
+            resources.ApplyResources(dateTimePicker3, "dateTimePicker3");
+            dateTimePicker3.Name = "dateTimePicker3";
+            // 
+            // dateTimePicker4
+            // 
+            resources.ApplyResources(dateTimePicker4, "dateTimePicker4");
+            dateTimePicker4.Name = "dateTimePicker4";
+            // 
+            // dateTimePicker5
+            // 
+            resources.ApplyResources(dateTimePicker5, "dateTimePicker5");
+            dateTimePicker5.Name = "dateTimePicker5";
+            // 
+            // dateTimePicker6
+            // 
+            resources.ApplyResources(dateTimePicker6, "dateTimePicker6");
+            dateTimePicker6.Name = "dateTimePicker6";
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            resources.ApplyResources(dataGridView1, "dataGridView1");
+            dataGridView1.Name = "dataGridView1";
+            // 
+            // label15
+            // 
+            resources.ApplyResources(label15, "label15");
+            label15.Name = "label15";
+            // 
+            // label17
+            // 
+            resources.ApplyResources(label17, "label17");
+            label17.Name = "label17";
+            // 
+            // label18
+            // 
+            resources.ApplyResources(label18, "label18");
+            label18.Name = "label18";
+            // 
+            // label19
+            // 
+            resources.ApplyResources(label19, "label19");
+            label19.Name = "label19";
+            // 
+            // label21
+            // 
+            resources.ApplyResources(label21, "label21");
+            label21.Name = "label21";
+            // 
+            // numericUpDown1
+            // 
+            resources.ApplyResources(numericUpDown1, "numericUpDown1");
+            numericUpDown1.Name = "numericUpDown1";
+            // 
+            // numericUpDown2
+            // 
+            resources.ApplyResources(numericUpDown2, "numericUpDown2");
+            numericUpDown2.Name = "numericUpDown2";
+            // 
+            // numericUpDown3
+            // 
+            resources.ApplyResources(numericUpDown3, "numericUpDown3");
+            numericUpDown3.Name = "numericUpDown3";
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(675, 432);
+            Controls.Add(numericUpDown3);
+            Controls.Add(numericUpDown2);
+            Controls.Add(numericUpDown1);
+            Controls.Add(label21);
+            Controls.Add(label19);
+            Controls.Add(label18);
+            Controls.Add(label17);
+            Controls.Add(label15);
+            Controls.Add(dataGridView1);
+            Controls.Add(dateTimePicker6);
+            Controls.Add(dateTimePicker5);
+            Controls.Add(dateTimePicker4);
+            Controls.Add(dateTimePicker3);
+            Controls.Add(dateTimePicker2);
+            Controls.Add(dateTimePicker1);
             Controls.Add(button4);
             Controls.Add(label16);
-            Controls.Add(textBox1);
             Controls.Add(label14);
             Controls.Add(comboBox9);
             Controls.Add(button3);
             Controls.Add(label8);
             Controls.Add(label13);
-            Controls.Add(comboBox2);
             Controls.Add(label6);
             Controls.Add(label7);
-            Controls.Add(comboBox3);
             Controls.Add(button2);
             Controls.Add(label1);
             Controls.Add(comboBox6);
             Controls.Add(button8);
             Controls.Add(label9);
-            Controls.Add(comboBox7);
             Controls.Add(label10);
             Controls.Add(label11);
             Controls.Add(label12);
-            Controls.Add(comboBox8);
             Controls.Add(button7);
             Controls.Add(comboBox5);
             Controls.Add(button5);
             Controls.Add(label5);
-            Controls.Add(comboBox4);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
-            Controls.Add(comboBox1);
             Controls.Add(button1);
             Name = "Form1";
-            Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown3).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
         private Button button1;
-        private ComboBox comboBox1;
         private Label label2;
         private Label label3;
-        private ComboBox comboBox4;
         private Label label4;
         private ComboBox comboBox5;
         private Button button5;
@@ -398,24 +359,34 @@
         private ComboBox comboBox6;
         private Button button8;
         private Label label9;
-        private ComboBox comboBox7;
         private Label label10;
         private Label label11;
         private Label label12;
-        private ComboBox comboBox8;
         private Button button2;
         private Label label1;
-        private ComboBox comboBox2;
         private Label label6;
         private Label label7;
-        private ComboBox comboBox3;
         private ComboBox comboBox9;
         private Button button3;
         private Label label8;
         private Label label13;
         private Label label14;
-        private TextBox textBox1;
         private Button button4;
         private Label label16;
+        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dateTimePicker2;
+        private DateTimePicker dateTimePicker3;
+        private DateTimePicker dateTimePicker4;
+        private DateTimePicker dateTimePicker5;
+        private DateTimePicker dateTimePicker6;
+        private DataGridView dataGridView1;
+        private Label label15;
+        private Label label17;
+        private Label label18;
+        private Label label19;
+        private Label label21;
+        private NumericUpDown numericUpDown1;
+        private NumericUpDown numericUpDown2;
+        private NumericUpDown numericUpDown3;
     }
 }

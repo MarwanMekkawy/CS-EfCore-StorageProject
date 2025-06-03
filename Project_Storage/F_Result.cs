@@ -17,6 +17,14 @@ namespace Project_Storage
             InitializeComponent();
             this.MaximumSize = this.Size;
             this.MinimumSize = this.Size;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            
+        }
+
+        public void LoadResults<T>(string x,List<T> results)
+        {
+            label1.Text = x;
+            dataGridView1.DataSource = results;
         }
     }
 }
