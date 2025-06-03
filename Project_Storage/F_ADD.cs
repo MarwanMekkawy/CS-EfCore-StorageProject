@@ -111,7 +111,13 @@ namespace Project_Storage
         //add storage button
         private void button1_Click(object sender, EventArgs e)
         {
-            string name = textBox1.Text;
+            // Check if any required field is empty
+            if (string.IsNullOrWhiteSpace(textBox1.Text) || string.IsNullOrWhiteSpace(textBox2.Text) ||  string.IsNullOrWhiteSpace(textBox3.Text))
+            {
+                MessageBox.Show("Please fill in all required fields before adding storage.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+                string name = textBox1.Text;
             string address = textBox2.Text;
             string super = textBox3.Text;
             Storages storage = new Storages();
@@ -128,6 +134,11 @@ namespace Project_Storage
         //add item button
         private void button2_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(textBox4.Text) || string.IsNullOrWhiteSpace(textBox5.Text))
+            {
+                MessageBox.Show("Please fill in all required fields before adding item.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             string name = textBox6.Text;
             string code = textBox4.Text;
             Items item = new Items();
@@ -142,6 +153,12 @@ namespace Project_Storage
         //add client button
         private void button3_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(textBox6.Text) || string.IsNullOrWhiteSpace(textBox7.Text) || string.IsNullOrWhiteSpace(textBox8.Text) ||
+                string.IsNullOrWhiteSpace(textBox9.Text) || string.IsNullOrWhiteSpace(textBox10.Text) ||  string.IsNullOrWhiteSpace(comboBox1.Text))
+            {
+                MessageBox.Show("Please fill in all required fields before adding client.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             string name = textBox8.Text;
             string phone = textBox5.Text;
             string fax = textBox7.Text;

@@ -227,7 +227,7 @@ namespace Project_Storage
             if (results.Count > 0)
             {
                 var ResultForm = new F_Result();
-                ResultForm.LoadResults($"Transfers in {selectedStorages} from \n{fromDate} to {toDate}", results);
+                ResultForm.LoadResults($"Transfers in storage/s from \n{fromDate} to {toDate}", results);
                 ResultForm.ShowDialog();
             }
             else
@@ -237,6 +237,12 @@ namespace Project_Storage
                 ResultForm.ShowDialog();
             }
         }
-        
+
+        //////disposing the connection
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            db.Dispose();
+            base.OnFormClosed(e);
+        }
     }
 }

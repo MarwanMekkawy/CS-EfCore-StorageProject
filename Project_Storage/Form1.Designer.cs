@@ -106,6 +106,7 @@
             // 
             // button5
             // 
+            button5.Cursor = Cursors.Hand;
             resources.ApplyResources(button5, "button5");
             button5.Name = "button5";
             button5.UseVisualStyleBackColor = true;
