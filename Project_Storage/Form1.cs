@@ -10,6 +10,7 @@ namespace Project_Storage
         {
             InitializeComponent();
 
+
             this.MaximumSize = this.Size;
             this.MinimumSize = this.Size;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;

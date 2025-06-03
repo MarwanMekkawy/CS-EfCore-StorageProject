@@ -44,10 +44,11 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 30F);
+            label1.Font = new Font("SimSun", 24.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.SaddleBrown;
             label1.Location = new Point(12, 9);
             label1.Name = "label1";
-            label1.Size = new Size(130, 54);
+            label1.Size = new Size(123, 33);
             label1.TabIndex = 1;
             label1.Text = "label1";
             // 

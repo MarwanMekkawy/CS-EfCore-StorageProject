@@ -69,6 +69,10 @@
             numericUpDown1 = new NumericUpDown();
             numericUpDown2 = new NumericUpDown();
             numericUpDown3 = new NumericUpDown();
+            label20 = new Label();
+            label22 = new Label();
+            label23 = new Label();
+            label24 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
@@ -77,6 +81,7 @@
             // 
             // button1
             // 
+            button1.Cursor = Cursors.Hand;
             resources.ApplyResources(button1, "button1");
             button1.Name = "button1";
             button1.UseVisualStyleBackColor = true;
@@ -119,6 +124,7 @@
             // 
             // button7
             // 
+            button7.Cursor = Cursors.Hand;
             resources.ApplyResources(button7, "button7");
             button7.Name = "button7";
             button7.UseVisualStyleBackColor = true;
@@ -132,6 +138,7 @@
             // 
             // button8
             // 
+            button8.Cursor = Cursors.Hand;
             resources.ApplyResources(button8, "button8");
             button8.Name = "button8";
             button8.UseVisualStyleBackColor = true;
@@ -159,6 +166,7 @@
             // 
             // button2
             // 
+            button2.Cursor = Cursors.Hand;
             resources.ApplyResources(button2, "button2");
             button2.Name = "button2";
             button2.UseVisualStyleBackColor = true;
@@ -187,6 +195,7 @@
             // 
             // button3
             // 
+            button3.Cursor = Cursors.Hand;
             resources.ApplyResources(button3, "button3");
             button3.Name = "button3";
             button3.UseVisualStyleBackColor = true;
@@ -209,6 +218,7 @@
             // 
             // button4
             // 
+            button4.Cursor = Cursors.Hand;
             resources.ApplyResources(button4, "button4");
             button4.Name = "button4";
             button4.UseVisualStyleBackColor = true;
@@ -295,10 +305,38 @@
             resources.ApplyResources(numericUpDown3, "numericUpDown3");
             numericUpDown3.Name = "numericUpDown3";
             // 
+            // label20
+            // 
+            label20.BorderStyle = BorderStyle.Fixed3D;
+            resources.ApplyResources(label20, "label20");
+            label20.Name = "label20";
+            // 
+            // label22
+            // 
+            label22.BorderStyle = BorderStyle.Fixed3D;
+            resources.ApplyResources(label22, "label22");
+            label22.Name = "label22";
+            // 
+            // label23
+            // 
+            label23.BorderStyle = BorderStyle.Fixed3D;
+            resources.ApplyResources(label23, "label23");
+            label23.Name = "label23";
+            // 
+            // label24
+            // 
+            label24.BorderStyle = BorderStyle.Fixed3D;
+            resources.ApplyResources(label24, "label24");
+            label24.Name = "label24";
+            // 
             // Form1
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(label24);
+            Controls.Add(label23);
+            Controls.Add(label22);
+            Controls.Add(label20);
             Controls.Add(numericUpDown3);
             Controls.Add(numericUpDown2);
             Controls.Add(numericUpDown1);
@@ -389,5 +427,9 @@
         private NumericUpDown numericUpDown1;
         private NumericUpDown numericUpDown2;
         private NumericUpDown numericUpDown3;
+        private Label label20;
+        private Label label22;
+        private Label label23;
+        private Label label24;
     }
 }

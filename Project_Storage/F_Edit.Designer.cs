@@ -85,6 +85,9 @@
             button9 = new Button();
             button5 = new Button();
             button10 = new Button();
+            label1 = new Label();
+            label4 = new Label();
+            label8 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -127,36 +130,40 @@
             // label21
             // 
             label21.AutoSize = true;
+            label21.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold);
             label21.Location = new Point(808, 123);
             label21.Name = "label21";
-            label21.Size = new Size(40, 15);
+            label21.Size = new Size(39, 13);
             label21.TabIndex = 138;
             label21.Text = "Count";
             // 
             // label23
             // 
             label23.AutoSize = true;
+            label23.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold);
             label23.Location = new Point(808, 68);
             label23.Name = "label23";
-            label23.Size = new Size(63, 15);
+            label23.Size = new Size(63, 13);
             label23.TabIndex = 137;
             label23.Text = "ExpiryDate";
             // 
             // label25
             // 
             label25.AutoSize = true;
+            label25.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold);
             label25.Location = new Point(807, 39);
             label25.Name = "label25";
-            label25.Size = new Size(90, 15);
+            label25.Size = new Size(89, 13);
             label25.TabIndex = 136;
             label25.Text = "ProductionDate";
             // 
             // label26
             // 
             label26.AutoSize = true;
+            label26.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold);
             label26.Location = new Point(808, 97);
             label26.Name = "label26";
-            label26.Size = new Size(66, 15);
+            label26.Size = new Size(64, 13);
             label26.TabIndex = 135;
             label26.Text = "Item Name";
             // 
@@ -217,41 +224,47 @@
             // label13
             // 
             label13.AutoSize = true;
+            label13.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold);
             label13.Location = new Point(808, 10);
             label13.Name = "label13";
-            label13.Size = new Size(31, 15);
+            label13.Size = new Size(31, 13);
             label13.TabIndex = 128;
             label13.Text = "Date";
             // 
             // label14
             // 
             label14.AutoSize = true;
+            label14.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold);
             label14.Location = new Point(542, 102);
             label14.Name = "label14";
-            label14.Size = new Size(82, 15);
+            label14.Size = new Size(81, 13);
             label14.TabIndex = 127;
             label14.Text = "ExporterClient";
             // 
             // label15
             // 
             label15.AutoSize = true;
+            label15.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold);
             label15.Location = new Point(544, 158);
             label15.Name = "label15";
-            label15.Size = new Size(98, 15);
+            label15.Size = new Size(98, 13);
             label15.TabIndex = 126;
             label15.Text = "ExportingStorage";
             // 
             // label16
             // 
             label16.AutoSize = true;
+            label16.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold);
             label16.Location = new Point(543, 131);
             label16.Name = "label16";
-            label16.Size = new Size(100, 15);
+            label16.Size = new Size(99, 13);
             label16.TabIndex = 125;
             label16.Text = "ImportingStorage";
             // 
             // button4
             // 
+            button4.Cursor = Cursors.Hand;
+            button4.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             button4.Location = new Point(837, 184);
             button4.Name = "button4";
             button4.Size = new Size(278, 49);
@@ -263,27 +276,30 @@
             // label17
             // 
             label17.AutoSize = true;
+            label17.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold);
             label17.Location = new Point(543, 10);
             label17.Name = "label17";
-            label17.Size = new Size(80, 15);
+            label17.Size = new Size(80, 13);
             label17.TabIndex = 123;
             label17.Text = "Internal Move";
             // 
             // label18
             // 
             label18.AutoSize = true;
+            label18.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold);
             label18.Location = new Point(544, 71);
             label18.Name = "label18";
-            label18.Size = new Size(84, 15);
+            label18.Size = new Size(82, 13);
             label18.TabIndex = 122;
             label18.Text = "ImporterClient";
             // 
             // label19
             // 
             label19.AutoSize = true;
+            label19.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold);
             label19.Location = new Point(546, 42);
             label19.Name = "label19";
-            label19.Size = new Size(75, 15);
+            label19.Size = new Size(76, 13);
             label19.TabIndex = 121;
             label19.Text = "Transfer Type";
             // 
@@ -298,9 +314,10 @@
             // label12
             // 
             label12.AutoSize = true;
+            label12.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold);
             label12.Location = new Point(279, 184);
             label12.Name = "label12";
-            label12.Size = new Size(65, 15);
+            label12.Size = new Size(65, 13);
             label12.TabIndex = 119;
             label12.Text = "Client Type";
             // 
@@ -314,9 +331,10 @@
             // label9
             // 
             label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold);
             label9.Location = new Point(278, 126);
             label9.Name = "label9";
-            label9.Size = new Size(75, 15);
+            label9.Size = new Size(72, 13);
             label9.TabIndex = 117;
             label9.Text = "Client E-mail";
             // 
@@ -330,9 +348,10 @@
             // label10
             // 
             label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold);
             label10.Location = new Point(279, 155);
             label10.Name = "label10";
-            label10.Size = new Size(83, 15);
+            label10.Size = new Size(82, 13);
             label10.TabIndex = 115;
             label10.Text = "Client Website";
             // 
@@ -346,14 +365,17 @@
             // label11
             // 
             label11.AutoSize = true;
+            label11.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold);
             label11.Location = new Point(279, 97);
             label11.Name = "label11";
-            label11.Size = new Size(78, 15);
+            label11.Size = new Size(77, 13);
             label11.TabIndex = 113;
             label11.Text = "Client Mobile";
             // 
             // button3
             // 
+            button3.Cursor = Cursors.Hand;
+            button3.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             button3.Location = new Point(385, 210);
             button3.Name = "button3";
             button3.Size = new Size(134, 23);
@@ -372,9 +394,10 @@
             // label5
             // 
             label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold);
             label5.Location = new Point(278, 39);
             label5.Name = "label5";
-            label5.Size = new Size(75, 15);
+            label5.Size = new Size(74, 13);
             label5.TabIndex = 110;
             label5.Text = "Client Phone";
             // 
@@ -388,9 +411,10 @@
             // label7
             // 
             label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold);
             label7.Location = new Point(279, 68);
             label7.Name = "label7";
-            label7.Size = new Size(59, 15);
+            label7.Size = new Size(58, 13);
             label7.TabIndex = 108;
             label7.Text = "Client Fax";
             // 
@@ -404,14 +428,17 @@
             // label6
             // 
             label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold);
             label6.Location = new Point(11, 39);
             label6.Name = "label6";
-            label6.Size = new Size(62, 15);
+            label6.Size = new Size(60, 13);
             label6.TabIndex = 101;
             label6.Text = "Item Code";
             // 
             // button1
             // 
+            button1.Cursor = Cursors.Hand;
+            button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             button1.Location = new Point(117, 210);
             button1.Name = "button1";
             button1.Size = new Size(132, 23);
@@ -430,9 +457,10 @@
             // label3
             // 
             label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold);
             label3.Location = new Point(11, 155);
             label3.Name = "label3";
-            label3.Size = new Size(92, 15);
+            label3.Size = new Size(92, 13);
             label3.TabIndex = 98;
             label3.Text = "Storage Address";
             // 
@@ -446,9 +474,10 @@
             // label2
             // 
             label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold);
             label2.Location = new Point(12, 184);
             label2.Name = "label2";
-            label2.Size = new Size(83, 15);
+            label2.Size = new Size(82, 13);
             label2.TabIndex = 96;
             label2.Text = "Storage Super.";
             // 
@@ -490,6 +519,8 @@
             // 
             // button8
             // 
+            button8.Cursor = Cursors.Hand;
+            button8.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             button8.Location = new Point(116, 65);
             button8.Name = "button8";
             button8.Size = new Size(132, 23);
@@ -501,32 +532,37 @@
             // label20
             // 
             label20.AutoSize = true;
+            label20.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold);
             label20.Location = new Point(12, 10);
             label20.Name = "label20";
-            label20.Size = new Size(69, 15);
+            label20.Size = new Size(67, 13);
             label20.TabIndex = 152;
             label20.Text = "Search Item";
             // 
             // label22
             // 
             label22.AutoSize = true;
+            label22.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold);
             label22.Location = new Point(12, 126);
             label22.Name = "label22";
-            label22.Size = new Size(85, 15);
+            label22.Size = new Size(84, 13);
             label22.TabIndex = 154;
             label22.Text = "Search Storage";
             // 
             // label24
             // 
             label24.AutoSize = true;
+            label24.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold);
             label24.Location = new Point(281, 10);
             label24.Name = "label24";
-            label24.Size = new Size(79, 15);
+            label24.Size = new Size(77, 13);
             label24.TabIndex = 156;
             label24.Text = "Search Client ";
             // 
             // button2
             // 
+            button2.Cursor = Cursors.Hand;
+            button2.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             button2.Location = new Point(11, 65);
             button2.Name = "button2";
             button2.Size = new Size(92, 23);
@@ -537,6 +573,8 @@
             // 
             // button6
             // 
+            button6.Cursor = Cursors.Hand;
+            button6.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             button6.Location = new Point(12, 210);
             button6.Name = "button6";
             button6.Size = new Size(92, 23);
@@ -547,6 +585,8 @@
             // 
             // button7
             // 
+            button7.Cursor = Cursors.Hand;
+            button7.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             button7.Location = new Point(281, 210);
             button7.Name = "button7";
             button7.Size = new Size(92, 23);
@@ -557,6 +597,8 @@
             // 
             // button9
             // 
+            button9.Cursor = Cursors.Hand;
+            button9.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             button9.Location = new Point(546, 184);
             button9.Name = "button9";
             button9.Size = new Size(278, 49);
@@ -567,6 +609,8 @@
             // 
             // button5
             // 
+            button5.Cursor = Cursors.Hand;
+            button5.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             button5.Location = new Point(837, 158);
             button5.Name = "button5";
             button5.Size = new Size(135, 23);
@@ -577,6 +621,8 @@
             // 
             // button10
             // 
+            button10.Cursor = Cursors.Hand;
+            button10.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             button10.Location = new Point(978, 158);
             button10.Name = "button10";
             button10.Size = new Size(135, 23);
@@ -585,11 +631,41 @@
             button10.UseVisualStyleBackColor = true;
             button10.Click += button10_Click;
             // 
+            // label1
+            // 
+            label1.BorderStyle = BorderStyle.Fixed3D;
+            label1.ImeMode = ImeMode.NoControl;
+            label1.Location = new Point(530, 5);
+            label1.Name = "label1";
+            label1.Size = new Size(2, 245);
+            label1.TabIndex = 163;
+            // 
+            // label4
+            // 
+            label4.BorderStyle = BorderStyle.Fixed3D;
+            label4.ImeMode = ImeMode.NoControl;
+            label4.Location = new Point(265, 5);
+            label4.Name = "label4";
+            label4.Size = new Size(2, 245);
+            label4.TabIndex = 164;
+            // 
+            // label8
+            // 
+            label8.BorderStyle = BorderStyle.Fixed3D;
+            label8.ImeMode = ImeMode.NoControl;
+            label8.Location = new Point(8, 105);
+            label8.Name = "label8";
+            label8.Size = new Size(250, 2);
+            label8.TabIndex = 165;
+            // 
             // F_Edit
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1137, 483);
+            ClientSize = new Size(1128, 469);
+            Controls.Add(label8);
+            Controls.Add(label4);
+            Controls.Add(label1);
             Controls.Add(button10);
             Controls.Add(button5);
             Controls.Add(button9);
@@ -648,7 +724,7 @@
             Controls.Add(textBox2);
             Controls.Add(label2);
             Name = "F_Edit";
-            Text = "F_Edit";
+            Text = "[Edit/delete]";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -713,5 +789,8 @@
         private Button button9;
         private Button button5;
         private Button button10;
+        private Label label1;
+        private Label label4;
+        private Label label8;
     }
 }
