@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0GqokO219G8=",
+  "dgSpecHash": "7s36JEE3UzY=",
   "success": true,
-  "projectFilePath": "F:\\IT\\projects\\C-_EfCore_StorageProgect\\Project_Storage\\Project_Storage.csproj",
+  "projectFilePath": "F:\\IT\\projects\\CS_EfCore_StorageProgect\\Project_Storage\\Project_Storage.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\elomda\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\elomda\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

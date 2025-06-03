@@ -2802,11 +2802,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\IT\\projects\\C-_EfCore_StorageProgect\\Project_Storage\\Project_Storage.csproj",
+      "projectUniqueName": "F:\\IT\\projects\\CS_EfCore_StorageProgect\\Project_Storage\\Project_Storage.csproj",
       "projectName": "Project_Storage",
-      "projectPath": "F:\\IT\\projects\\C-_EfCore_StorageProgect\\Project_Storage\\Project_Storage.csproj",
+      "projectPath": "F:\\IT\\projects\\CS_EfCore_StorageProgect\\Project_Storage\\Project_Storage.csproj",
       "packagesPath": "C:\\Users\\elomda\\.nuget\\packages\\",
-      "outputPath": "F:\\IT\\projects\\C-_EfCore_StorageProgect\\Project_Storage\\obj\\",
+      "outputPath": "F:\\IT\\projects\\CS_EfCore_StorageProgect\\Project_Storage\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
