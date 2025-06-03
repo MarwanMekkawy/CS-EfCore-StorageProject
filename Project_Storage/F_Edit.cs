@@ -17,7 +17,7 @@ namespace Project_Storage
         Context db = new Context();
         public bool Edit = false;
         private int _selectedTransferId = -1;
-        
+
 
         public F_Edit()
         {
@@ -98,7 +98,7 @@ namespace Project_Storage
             comboBox7.Enabled = false;
             button5.Visible = false;
             button10.Visible = false;
-            comboBox13.Enabled= false;
+            comboBox13.Enabled = false;
             textBox13.Enabled = false;
         }
         //transfer combobox fetch
@@ -617,7 +617,7 @@ namespace Project_Storage
         //submit edits button
         private void button5_Click(object sender, EventArgs e)
         {
-            
+
             button5.Visible = false;
             button10.Visible = false;
             Edit = false;
@@ -664,7 +664,7 @@ namespace Project_Storage
             {
                 selectedTransfer.ClientName = comboBox4.Text == "none" ? null : comboBox4.Text;
             }
-            else 
+            else
             {
                 selectedTransfer.ClientName = null;
             }
@@ -726,7 +726,40 @@ namespace Project_Storage
             }
         }
 
-        
+        //Delete transfer
+        private void button9_Click(object sender, EventArgs e)
+        {
+            // Get selected transfer safely
+            Transfers selectedTransfer = null;
+
+            if (dataGridView1.CurrentRow?.DataBoundItem is Transfers currentTransfer)
+            {
+                selectedTransfer = currentTransfer;
+            }
+            else if (dataGridView1.SelectedRows.Count > 0 && dataGridView1.SelectedRows[0].DataBoundItem is Transfers selectedRowTransfer)
+            {
+                selectedTransfer = selectedRowTransfer;
+            }
+
+            if (selectedTransfer == null)
+            {
+                MessageBox.Show("Please select a row to delete.");
+                return;
+            }
+
+            // Ask for confirmation
+            var confirm = MessageBox.Show("Are you sure you want to delete this transfer?", "Confirm Delete", MessageBoxButtons.YesNo);
+            if (confirm != DialogResult.Yes) return;
+
+            // Delete and save
+            db.Transfers.Remove(selectedTransfer);
+            db.SaveChanges();
+
+            // Refresh grid
+            dataGridView1.DataSource = GetTransfers(selectedTransfer.Move == true);
+        }
+
+
 
 
 

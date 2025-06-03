@@ -563,6 +563,7 @@
             button9.TabIndex = 160;
             button9.Text = "Delete Transfer";
             button9.UseVisualStyleBackColor = true;
+            button9.Click += button9_Click;
             // 
             // button5
             // 
