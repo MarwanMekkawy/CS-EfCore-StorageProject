@@ -15,40 +15,14 @@ namespace Project_Storage
     public partial class F_ADD : Form
     {
         Context db = new Context();
-        //func.s for refreshing lists
-        public void ImportClient()
-        {
-            List<string> list = db.Clients.Where(x => x.Type == "Importer").Select(x => x.Name).ToList();
-            list.Insert(0, "none");                 //setting 1st value =null
-            comboBox4.DataSource = list;
-        }
-        public void ExportClient()
-        {
-            List<string> list3 = db.Clients.Where(x => x.Type == "Exporter").Select(x => x.Name).ToList();
-            list3.Insert(0, "none");
-            comboBox6.DataSource = list3;
-        }
-        public void ImportStorage()
-        {
-            List<string> list2 = db.Storages.Select(x => x.Name).ToList();
-            list2.Insert(0, "none");
-            comboBox5.DataSource = list2;
-        }
-        public void ExportStorage()
-        {
-            List<string> list4 = db.Storages.Select(x => x.Name).ToList();
-            list4.Insert(0, "none");
-            comboBox7.DataSource = list4;
-        }
-        public void NewItem()
-        {
-            List<string> list5 = db.Items.Select(x => x.Name).ToList();
-            comboBox13.DataSource = list5;
-        }
+       
 
         public F_ADD()
         {    
             InitializeComponent();
+            this.MaximumSize = this.Size;
+            this.MinimumSize = this.Size;
+
             ///client combobox
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.Items.Clear();
@@ -101,9 +75,39 @@ namespace Project_Storage
             //item name
             NewItem();
             if (comboBox13.Items.Count > 0) comboBox13.SelectedIndex = 0;
-
-
         }
+
+        //func.s for refreshing lists
+        public void ImportClient()
+        {
+            List<string> list = db.Clients.Where(x => x.Type == "Importer").Select(x => x.Name).ToList();
+            list.Insert(0, "none");                 //setting 1st value =null
+            comboBox4.DataSource = list;
+        }
+        public void ExportClient()
+        {
+            List<string> list3 = db.Clients.Where(x => x.Type == "Exporter").Select(x => x.Name).ToList();
+            list3.Insert(0, "none");
+            comboBox6.DataSource = list3;
+        }
+        public void ImportStorage()
+        {
+            List<string> list2 = db.Storages.Select(x => x.Name).ToList();
+            list2.Insert(0, "none");
+            comboBox5.DataSource = list2;
+        }
+        public void ExportStorage()
+        {
+            List<string> list4 = db.Storages.Select(x => x.Name).ToList();
+            list4.Insert(0, "none");
+            comboBox7.DataSource = list4;
+        }
+        public void NewItem()
+        {
+            List<string> list5 = db.Items.Select(x => x.Name).ToList();
+            comboBox13.DataSource = list5;
+        }
+
         //add storage button
         private void button1_Click(object sender, EventArgs e)
         {
@@ -252,14 +256,22 @@ namespace Project_Storage
                 comboBox4.Enabled = false;
                 comboBox6.Enabled = false;
                 comboBox2.Enabled = false;
-
-
+                comboBox5.Enabled = true;
+                comboBox7.Enabled = true;
             }
             else if ((bool)comboBox3.SelectedItem == false)
             {
-                comboBox4.Enabled = true;
-                comboBox6.Enabled = true;
                 comboBox2.Enabled = true;
+                comboBox2.SelectedIndex = -1;
+                comboBox4.Enabled = false;
+                comboBox6.Enabled = false;
+                comboBox5.Enabled = false;
+                comboBox7.Enabled = false;
+                comboBox4.SelectedItem = "none";
+                comboBox6.SelectedItem = "none";
+                comboBox5.SelectedItem = "none";
+                comboBox7.SelectedItem = "none";
+
             }
         }
         private void comboBox2_SelectedValueChanged(object sender, EventArgs e)

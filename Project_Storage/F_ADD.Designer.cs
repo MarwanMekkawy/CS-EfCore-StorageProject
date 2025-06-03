@@ -205,9 +205,9 @@
             // 
             // button2
             // 
-            button2.Location = new Point(285, 101);
+            button2.Location = new Point(285, 67);
             button2.Name = "button2";
-            button2.Size = new Size(228, 23);
+            button2.Size = new Size(228, 57);
             button2.TabIndex = 40;
             button2.Text = "Add Item";
             button2.UseVisualStyleBackColor = true;

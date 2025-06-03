@@ -23,24 +23,24 @@ namespace Project_Storage
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Stored key 
+            // Stored key
             modelBuilder.Entity<Stored>()
                 .HasKey(s => s.Id);
 
-            // Stored relations
+            // Stored relations 
             modelBuilder.Entity<Stored>()
                 .HasOne(s => s.Storage)
                 .WithMany(st => st.StoredItems)
                 .HasForeignKey(s => s.StorageName)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);  // delete children when Storage deleted
 
             modelBuilder.Entity<Stored>()
                 .HasOne(s => s.Item)
                 .WithMany(i => i.StoredEntries)
                 .HasForeignKey(s => s.ItemName)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);  // delete children when Item deleted
 
-            // Transfers relations 
+            // Transfers relations
             modelBuilder.Entity<Transfers>(entity =>
             {
                 entity.HasKey(t => t.TransferId);
@@ -72,7 +72,7 @@ namespace Project_Storage
                     .WithMany(c => c.Transfers)
                     .HasForeignKey(t => t.ClientName)
                     .IsRequired(false)
-                    .OnDelete(DeleteBehavior.Restrict);
+                    .OnDelete(DeleteBehavior.Cascade);  // delete Transfers when Client deleted
 
                 entity.Property(t => t.ExporterStorageName)
                     .HasMaxLength(100)
@@ -82,7 +82,7 @@ namespace Project_Storage
                     .WithMany(s => s.ExportTransfers)
                     .HasForeignKey(t => t.ExporterStorageName)
                     .IsRequired(false)
-                    .OnDelete(DeleteBehavior.Restrict);
+                    .OnDelete(DeleteBehavior.Restrict);  // no delet
 
                 entity.Property(t => t.ImporterStorageName)
                     .HasMaxLength(100)
@@ -92,7 +92,7 @@ namespace Project_Storage
                     .WithMany(s => s.ImportTransfers)
                     .HasForeignKey(t => t.ImporterStorageName)
                     .IsRequired(false)
-                    .OnDelete(DeleteBehavior.Restrict);
+                    .OnDelete(DeleteBehavior.Restrict);  // no delete
 
                 entity.Property(t => t.ItemName)
                     .HasMaxLength(100)
@@ -102,13 +102,11 @@ namespace Project_Storage
                     .WithMany(i => i.Transfers)
                     .HasForeignKey(t => t.ItemName)
                     .IsRequired(false)
-                    .OnDelete(DeleteBehavior.Restrict);
+                    .OnDelete(DeleteBehavior.Cascade);  // delete Transfers when Item deleted
             });
 
             base.OnModelCreating(modelBuilder);
         }
-
-
 
     }
 }

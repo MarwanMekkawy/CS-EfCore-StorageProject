@@ -9,12 +9,12 @@ namespace Project_Storage
 {
     class Transfers
     {
-        public int TransferId { get; set; }  // Primary Key
+        public int TransferId { get; set; }  //Primary Key
 
         [MaxLength(20)]
-        public string? Type { get; set; }     // In / Out (nullable)
+        public string? Type { get; set; }     //In / Out / internal
 
-        public bool? Move { get; set; }       // nullable
+        public bool? Move { get; set; }       
 
         [MaxLength(100)]
         public string? ClientName { get; set; }  
@@ -38,5 +38,6 @@ namespace Project_Storage
         public DateTime? ExpiryDate { get; set; }
         public int? UnitCount { get; set; }
     }
+
 
 }

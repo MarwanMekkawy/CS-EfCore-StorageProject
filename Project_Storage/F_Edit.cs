@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,11 +15,51 @@ namespace Project_Storage
     public partial class F_Edit : Form
     {
         Context db = new Context();
+        public bool Edit = false;
+        private int _selectedTransferId = -1;
+        
+
         public F_Edit()
         {
             InitializeComponent();
+            this.MaximumSize = this.Size;
+            this.MinimumSize = this.Size;
 
+            //importer client
+            ImportClient();
+            comboBox4.SelectedIndex = 0;
+            comboBox4.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            comboBox4.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            //importer storage
+            ImportStorage();
+            comboBox5.SelectedIndex = 0;
+            comboBox5.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            comboBox5.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            //exporter client
+            ExportClient();
+            comboBox6.SelectedIndex = 0;
+            comboBox6.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            comboBox6.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            //exporter storage
+            ExportStorage();
+            comboBox7.SelectedIndex = 0;
+            comboBox7.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            comboBox7.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            //items 
+            ItemsNames();
+            comboBox13.SelectedIndex = 0;
+            comboBox13.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            comboBox13.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            //gridview content-fill
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.MultiSelect = false;
+
 
             //itmes data fetch
             List<string> Ilist = db.Items.Select(x => x.Name).ToList();
@@ -41,9 +82,72 @@ namespace Project_Storage
             comboBox10.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             comboBox10.AutoCompleteSource = AutoCompleteSource.ListItems;
 
+            //transfers
+            comboBox3.Items.Add(false);
+            comboBox3.Items.Add(true);
+            comboBox3.SelectedIndex = -1;
+            comboBox2.Items.Add("in");
+            comboBox2.Items.Add("out");
+            comboBox2.Items.Add("internal");
+            comboBox3.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox2.Enabled = false;
+            comboBox4.Enabled = false;
+            comboBox6.Enabled = false;
+            comboBox5.Enabled = false;
+            comboBox7.Enabled = false;
+            button5.Visible = false;
+            button10.Visible = false;
+            comboBox13.Enabled= false;
+            textBox13.Enabled = false;
+        }
+        //transfer combobox fetch
+        public void ImportClient()
+        {
+            List<string> list = db.Clients.Where(x => x.Type == "Importer").Select(x => x.Name).ToList();
+            list.Insert(0, "none");                 //setting 1st value =null
+            comboBox4.DataSource = list;
+        }
+        public void ExportClient()
+        {
+            List<string> list3 = db.Clients.Where(x => x.Type == "Exporter").Select(x => x.Name).ToList();
+            list3.Insert(0, "none");
+            comboBox6.DataSource = list3;
+        }
+        public void ImportStorage()
+        {
+            List<string> list2 = db.Storages.Select(x => x.Name).ToList();
+            list2.Insert(0, "none");
+            comboBox5.DataSource = list2;
+        }
+        public void ExportStorage()
+        {
+            List<string> list4 = db.Storages.Select(x => x.Name).ToList();
+            list4.Insert(0, "none");
+            comboBox7.DataSource = list4;
+        }
+        public void ItemsNames()
+        {
+            List<string> list5 = db.Items.Select(x => x.Name).ToList();
+            list5.Insert(0, "none");
+            comboBox13.DataSource = list5;
+        }
+        ///transfer main query///
+        private List<Transfers> GetTransfers(bool z)
+        {
+            var transfers = db.Transfers.Where(x => x.Move == z).ToList();
+
+            if (transfers.Count != 0)
+                return transfers;
+            else
+            {
+                MessageBox.Show("No items found.");
+                return transfers;
+            }
         }
 
-        //selecting item
+
+        ////////////selecting item////////////
         private void comboBox8_TextChanged(object sender, EventArgs e)
         {
             textBox4.Enabled = false;
@@ -90,21 +194,22 @@ namespace Project_Storage
             dataGridView1.DataSource = new[] { new { Name = Iname, Code = NewCode } };
 
         }
+
         //deleting item
         private void button2_Click(object sender, EventArgs e)
         {
-            string Iname= comboBox8.Text?.Trim();
-            if (string.IsNullOrWhiteSpace(Iname)) 
+            string Iname = comboBox8.Text?.Trim();
+            if (string.IsNullOrWhiteSpace(Iname))
             {
                 MessageBox.Show("Please select an item to delete.");
                 return;
             }
             var ItemToDelete = db.Items.FirstOrDefault(x => x.Name == Iname);
 
-            if (ItemToDelete == null) { MessageBox.Show("Item not found.");return; }
+            if (ItemToDelete == null) { MessageBox.Show("Item not found."); return; }
 
             var confirm = MessageBox
-                .Show($"Are you sure you want to delete '{Iname}'?","Confirm Delete",MessageBoxButtons.YesNo);
+                .Show($"Are you sure you want to delete '{Iname}'? this will also will delete all the reltaed [stored items/transfers]", "Warning", MessageBoxButtons.YesNo);
             if (confirm == DialogResult.Yes)
             {
                 db.Items.Remove(ItemToDelete);
@@ -115,13 +220,11 @@ namespace Project_Storage
                 // Refresh 
                 comboBox8.DataSource = db.Items.Select(x => x.Name).ToList();
                 comboBox8.SelectedIndex = -1;
-                textBox4.Text = null;
-                textBox4.Enabled = false;
                 dataGridView1.DataSource = null;
             }
         }
 
-        //select storage
+        ////////////select storage////////////
         private void comboBox9_TextChanged(object sender, EventArgs e)
         {
             textBox2.Enabled = false;
@@ -178,7 +281,44 @@ namespace Project_Storage
             dataGridView1.DataSource = new[] { new { Storagename = Sname, StorageAddress = NewSaddress, StorageSupervisor = NewSsuper } };
         }
 
-        //select client
+        //storage delete
+        private void button6_Click(object sender, EventArgs e)
+        {
+            string Sname = comboBox9.Text?.Trim();
+
+            if (string.IsNullOrWhiteSpace(Sname))
+            {
+                MessageBox.Show("Please select a Storage to delete.");
+                return;
+            }
+
+            var StorageToDelete = db.Storages.FirstOrDefault(x => x.Name == Sname);
+            if (StorageToDelete != null)
+            {
+
+                var confirm = MessageBox
+                   .Show($"Are you sure you want to delete '{Sname}'? this will also delete all the related data to that storage [stored items, transfer(imported/exported)]", "Warning", MessageBoxButtons.YesNo);
+                if (confirm == DialogResult.Yes)
+                {
+                    var relatedTransfers = db.Transfers.Where(t => t.ExporterStorageName == Sname || t.ImporterStorageName == Sname).ToList();  //[deleting related 
+                    if (relatedTransfers.Any()) { db.Transfers.RemoveRange(relatedTransfers); }                                                   //transfers first.]
+
+                    db.Remove(StorageToDelete);
+                    db.SaveChanges();
+                    MessageBox.Show($"{Sname} deleted successfully.");
+                }
+                //refresh
+                comboBox9.DataSource = db.Storages.Select(x => x.Name).ToList();
+                comboBox9.SelectedIndex = -1;
+                dataGridView1.DataSource = null;
+            }
+            else
+            {
+                MessageBox.Show("Storage Not Found");
+            }
+        }
+
+        ////////////select client////////////
         private void comboBox10_TextChanged(object sender, EventArgs e)
         {
             textBox5.Enabled = false;
@@ -261,7 +401,7 @@ namespace Project_Storage
                 itemToUpdate.Email = NewCemail;
                 itemToUpdate.Website = NewCwebsite;
                 itemToUpdate.Type = NewCtype;
-                
+
                 db.SaveChanges();                                            //save
 
                 //refresh
@@ -274,7 +414,328 @@ namespace Project_Storage
                 dataGridView1.DataSource = null;
             }
         }
+
+        //client delete
+        private void button7_Click(object sender, EventArgs e)
+        {
+            string Cname = comboBox10.Text;
+            if (!string.IsNullOrWhiteSpace(Cname))
+            {
+                var ItemToDelete = db.Clients.FirstOrDefault(x => x.Name == Cname);
+                if (ItemToDelete != null)
+                {
+                    var confirm = MessageBox.Show($"Are you sure you want to delete '{Cname}'? this will delete all the related [transfers]", "Warning", MessageBoxButtons.YesNo);
+                    if (confirm == DialogResult.Yes)
+                    {
+                        db.Remove(ItemToDelete);
+                        db.SaveChanges();
+                        MessageBox.Show($"{Cname} deleted successfully.");
+
+                        // Refresh 
+                        comboBox10.DataSource = db.Clients.Select(x => x.Name).ToList();
+                        comboBox10.SelectedIndex = -1;
+                        dataGridView1.DataSource = null;
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select an item to delete.");
+                return;
+            }
+        }
+
+        ////////////select Transfer////////////
+        /////making sure internal/external transfers triggers the right comboboxes [ensuring no combo conflicts]
+        private void comboBox3_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if ((bool)comboBox3.SelectedItem == true)
+            {
+                comboBox4.SelectedItem = "none";
+                comboBox6.SelectedItem = "none";
+                comboBox2.SelectedItem = "internal";
+                comboBox4.Enabled = false;
+                comboBox6.Enabled = false;
+                comboBox2.Enabled = false;
+
+
+                if (!Edit) { dataGridView1.DataSource = GetTransfers(true); }
+            }
+            else if ((bool)comboBox3.SelectedItem == false)
+            {
+                comboBox4.Enabled = true;
+                comboBox6.Enabled = true;
+                comboBox2.Enabled = true;
+                comboBox4.Enabled = false;
+                comboBox6.Enabled = false;
+                comboBox5.Enabled = false;
+                comboBox7.Enabled = false;
+                comboBox4.SelectedItem = "none";
+                comboBox6.SelectedItem = "none";
+                comboBox5.SelectedItem = "none";
+                comboBox7.SelectedItem = "none";
+
+                if (!Edit) { dataGridView1.DataSource = GetTransfers(false); }
+            }
+        }
+        private void comboBox2_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if ((comboBox2.SelectedItem as string) == "in")
+            {
+                comboBox4.SelectedItem = "none";
+                comboBox7.SelectedItem = "none";
+                comboBox4.Enabled = false;
+                comboBox7.Enabled = false;
+                comboBox5.Enabled = true;
+                comboBox6.Enabled = true;
+
+                if (!Edit) { dataGridView1.DataSource = GetTransfers(false).Where(z => z.Type == "in").ToList(); }
+            }
+            else if ((comboBox2.SelectedItem as string) == "out")
+            {
+                comboBox5.SelectedItem = "none";
+                comboBox6.SelectedItem = "none";
+                comboBox5.Enabled = false;
+                comboBox6.Enabled = false;
+                comboBox4.Enabled = true;
+                comboBox7.Enabled = true;
+
+                if (!Edit) { dataGridView1.DataSource = GetTransfers(false).Where(z => z.Type == "out").ToList(); }
+            }
+            else if ((comboBox2.SelectedItem as string) == "internal")
+            {
+                comboBox4.SelectedItem = "none";
+                comboBox6.SelectedItem = "none";
+                comboBox3.SelectedItem = true;
+                comboBox4.Enabled = false;
+                comboBox6.Enabled = false;
+                comboBox5.Enabled = true;
+                comboBox7.Enabled = true;
+                if (!Edit) { dataGridView1.DataSource = GetTransfers(true).Where(z => z.Type == "internal").ToList(); }
+            }
+        }
+        ////closing importer storage/exporter client options
+        private void comboBox4_SelectedValueChanged(object sender, EventArgs e)
+        {
+            string Cname = comboBox4.Text.ToString();
+            if (!Edit)
+            {
+                if (comboBox7.Text != "none")
+                {
+                    string Sname = comboBox7.Text.ToString();
+                    dataGridView1.DataSource = GetTransfers(false).Where(z => z.Type == "out" && z.ClientName == Cname && z.ExporterStorageName == Sname).ToList();
+                }
+            }
+
+            if ((comboBox4.SelectedItem as string) != "none")
+            {
+                comboBox6.SelectedItem = "none";
+                comboBox5.SelectedItem = "none";
+                comboBox6.Enabled = false;
+                comboBox5.Enabled = false;
+            }
+            else
+            {
+                comboBox6.Enabled = true;
+                comboBox5.Enabled = true;
+            }
+        }
+        ////closing importing client/exporter storage  options
+        private void comboBox6_SelectedValueChanged(object sender, EventArgs e)
+        {
+            string Cname = comboBox6.Text.ToString();
+            if (!Edit)
+            {
+                if (comboBox5.Text != "none")
+                {
+                    string Sname = comboBox5.Text.ToString();
+                    dataGridView1.DataSource = GetTransfers(false).Where(z => z.Type == "in" && z.ClientName == Cname && z.ImporterStorageName == Sname).ToList();
+                }
+            }
+
+            if ((comboBox6.SelectedItem as string) != "none")
+            {
+                comboBox4.SelectedItem = "none";
+                comboBox7.SelectedItem = "none";
+                comboBox4.Enabled = false;
+                comboBox7.Enabled = false;
+            }
+            else
+            {
+                comboBox4.Enabled = true;
+                comboBox7.Enabled = true;
+            }
+        }
+        private void comboBox5_SelectedValueChanged(object sender, EventArgs e)
+        {
+            string Sname = comboBox5.Text.ToString();
+            if (!Edit)
+            {
+                if (comboBox6.Text != "none")
+                {
+                    string Cname = comboBox6.Text.ToString();
+                    dataGridView1.DataSource = GetTransfers(false).Where(z => z.Type == "in" && z.ClientName == Cname && z.ImporterStorageName == Sname).ToList();
+                }
+                else if (comboBox7.Text != "none")
+                {
+                    string Sname2 = comboBox7.Text.ToString();
+                    dataGridView1.DataSource = GetTransfers(true).Where(z => z.Type == "internal" && z.ImporterStorageName == Sname && z.ExporterStorageName == Sname2).ToList();
+                }
+            }
+        }
+
+        private void comboBox7_SelectedValueChanged(object sender, EventArgs e)
+        {
+            string Sname = comboBox7.Text.ToString();
+            if (!Edit)
+            {
+                if (comboBox4.Text != "none")
+                {
+                    string Cname = comboBox4.Text.ToString();
+                    dataGridView1.DataSource = GetTransfers(false).Where(z => z.Type == "out" && z.ClientName == Cname && z.ExporterStorageName == Sname).ToList();
+                }
+                else if (comboBox5.Text != "none")
+                {
+                    string Sname2 = comboBox5.Text.ToString();
+                    dataGridView1.DataSource = GetTransfers(true).Where(z => z.Type == "internal" && z.ExporterStorageName == Sname && z.ImporterStorageName == Sname2).ToList();
+                }
+
+            }
+        }
+        //edit transactions button
+        private void button4_Click(object sender, EventArgs e)
+        {
+            comboBox13.Enabled = true;
+            textBox13.Enabled = true;
+            button5.Visible = true;
+            button10.Visible = true;
+            Edit = true;
+            if (dataGridView1.SelectedRows.Count > 0)
+                dataGridView1_SelectionChanged(null, null);
+        }
+
+        //submit edits button
+        private void button5_Click(object sender, EventArgs e)
+        {
+            
+            button5.Visible = false;
+            button10.Visible = false;
+            Edit = false;
+
+            Transfers selectedTransfer = null;
+
+            if (dataGridView1.CurrentRow?.DataBoundItem is Transfers currentTransfer)
+            {
+                selectedTransfer = currentTransfer;
+            }
+            else if (dataGridView1.SelectedRows.Count > 0 && dataGridView1.SelectedRows[0].DataBoundItem is Transfers selectedRowTransfer)
+            {
+                selectedTransfer = selectedRowTransfer;
+            }
+
+            if (selectedTransfer == null)
+            {
+                MessageBox.Show("Please select a row to edit.");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(comboBox13.Text) || string.IsNullOrWhiteSpace(textBox13.Text))
+            {
+                MessageBox.Show("Item name and unit count are required.");
+                return;
+            }
+
+            selectedTransfer.Type = comboBox2.SelectedItem?.ToString();
+            selectedTransfer.Move = (bool?)comboBox3.SelectedItem;
+            selectedTransfer.TransferDate = dateTimePicker1.Value;
+            selectedTransfer.ProductionDate = dateTimePicker2.Value;
+            selectedTransfer.ExpiryDate = dateTimePicker3.Value;
+            selectedTransfer.ItemName = comboBox13.Text.Trim();
+            selectedTransfer.UnitCount = int.TryParse(textBox13.Text.Trim(), out int count) ? count : 0;
+
+            selectedTransfer.ImporterStorageName = comboBox5.Text == "none" ? null : comboBox5.Text;
+            selectedTransfer.ExporterStorageName = comboBox7.Text == "none" ? null : comboBox7.Text;
+
+            if (selectedTransfer.Type == "in")
+            {
+                selectedTransfer.ClientName = comboBox6.Text == "none" ? null : comboBox6.Text;
+            }
+            else if (selectedTransfer.Type == "out")
+            {
+                selectedTransfer.ClientName = comboBox4.Text == "none" ? null : comboBox4.Text;
+            }
+            else 
+            {
+                selectedTransfer.ClientName = null;
+            }
+
+            db.SaveChanges();
+
+            dataGridView1.DataSource = GetTransfers(selectedTransfer.Move == true);
+        }
+
+        //discard edits button
+        private void button10_Click(object sender, EventArgs e)
+        {
+            button5.Visible = false;
+            button10.Visible = false;
+            Edit = false;
+            comboBox13.Enabled = false;
+            textBox13.Enabled = false;
+        }
+        //grid selection
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            if (!Edit || dataGridView1.SelectedRows.Count == 0) return;
+
+            var selectedRow = dataGridView1.SelectedRows[0];
+            if (selectedRow.DataBoundItem is not Transfers transfer) return;
+
+
+            comboBox3.SelectedItem = transfer.Move == true;
+            comboBox2.SelectedItem = transfer.Type;
+            comboBox13.SelectedItem = transfer.ItemName ?? "none";
+            textBox13.Text = transfer.UnitCount?.ToString() ?? "0";
+            dateTimePicker1.Value = transfer.TransferDate ?? DateTime.Today;
+            dateTimePicker2.Value = transfer.ProductionDate ?? DateTime.Today;
+            dateTimePicker3.Value = transfer.ExpiryDate ?? DateTime.Today;
+
+
+            comboBox4.SelectedItem = "none";
+            comboBox6.SelectedItem = "none";
+            comboBox5.SelectedItem = "none";
+            comboBox7.SelectedItem = "none";
+
+
+            if (transfer.Type == "in")
+            {
+                comboBox6.SelectedItem = transfer.ClientName ?? "none"; // Exporter client
+                comboBox5.SelectedItem = transfer.ImporterStorageName ?? "none";
+                comboBox7.SelectedItem = transfer.ExporterStorageName ?? "none";
+            }
+            else if (transfer.Type == "out")
+            {
+                comboBox4.SelectedItem = transfer.ClientName ?? "none"; // Importer client
+                comboBox5.SelectedItem = transfer.ImporterStorageName ?? "none";
+                comboBox7.SelectedItem = transfer.ExporterStorageName ?? "none";
+            }
+            else if (transfer.Type == "internal")
+            {
+                comboBox5.SelectedItem = transfer.ImporterStorageName ?? "none";
+                comboBox7.SelectedItem = transfer.ExporterStorageName ?? "none";
+            }
+        }
+
         
+
+
+
+
+
+
+
+
+        //disposing connection
     }
 }
 

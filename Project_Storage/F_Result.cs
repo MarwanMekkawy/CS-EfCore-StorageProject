@@ -15,6 +15,8 @@ namespace Project_Storage
         public F_Result()
         {
             InitializeComponent();
+            this.MaximumSize = this.Size;
+            this.MinimumSize = this.Size;
         }
     }
 }

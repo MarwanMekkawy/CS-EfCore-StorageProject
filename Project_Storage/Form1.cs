@@ -5,6 +5,8 @@ namespace Project_Storage
         public Form1()
         {
             InitializeComponent();
+            this.MaximumSize = this.Size;
+            this.MinimumSize = this.Size;
         }
 
         private void button1_Click(object sender, EventArgs e)
