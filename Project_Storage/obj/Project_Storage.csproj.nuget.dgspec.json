@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "F:\\IT\\projects\\CS_EfCore_StorageProgect\\Project_Storage\\Project_Storage.csproj": {}
+    "F:\\IT\\projects\\CS_EfCore_StorageProgect 2\\Project_Storage\\Project_Storage.csproj": {}
   },
   "projects": {
-    "F:\\IT\\projects\\CS_EfCore_StorageProgect\\Project_Storage\\Project_Storage.csproj": {
+    "F:\\IT\\projects\\CS_EfCore_StorageProgect 2\\Project_Storage\\Project_Storage.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\IT\\projects\\CS_EfCore_StorageProgect\\Project_Storage\\Project_Storage.csproj",
+        "projectUniqueName": "F:\\IT\\projects\\CS_EfCore_StorageProgect 2\\Project_Storage\\Project_Storage.csproj",
         "projectName": "Project_Storage",
-        "projectPath": "F:\\IT\\projects\\CS_EfCore_StorageProgect\\Project_Storage\\Project_Storage.csproj",
-        "packagesPath": "C:\\Users\\elomda\\.nuget\\packages\\",
-        "outputPath": "F:\\IT\\projects\\CS_EfCore_StorageProgect\\Project_Storage\\obj\\",
+        "projectPath": "F:\\IT\\projects\\CS_EfCore_StorageProgect 2\\Project_Storage\\Project_Storage.csproj",
+        "packagesPath": "C:\\Users\\Maro\\.nuget\\packages\\",
+        "outputPath": "F:\\IT\\projects\\CS_EfCore_StorageProgect 2\\Project_Storage\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\elomda\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Maro\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -74,7 +74,12 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "win-x64": {
+          "#import": []
         }
       }
     }

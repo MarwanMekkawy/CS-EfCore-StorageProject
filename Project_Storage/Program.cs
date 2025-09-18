@@ -1,3 +1,5 @@
+using Project_Storage.Data;
+
 namespace Project_Storage
 {
     public static class Program
@@ -9,17 +11,15 @@ namespace Project_Storage
         static void Main()
         {
             //////creating db
-            using (Context db = new Context())
+            using (var db = new Context())
             {
                 db.Database.EnsureCreated();
             }
 
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
 
-            
+
         }
     }
 }
